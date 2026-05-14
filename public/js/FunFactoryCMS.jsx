@@ -35,12 +35,15 @@ const defaultData = {
     // slider: array of image URLs (max 6). Empty array = no slider shown.
     sliderImages: [],
   },
-  stats: [
-    { number: "10+",  label: "Attractions" },
-    { number: "2",    label: "Locations" },
-    { number: "0–11", label: "Age Range" },
-    { number: "7",    label: "Days a Week" },
-  ],
+  stats: {
+    items: [
+      { number: "10+",  label: "Attractions" },
+      { number: "2",    label: "Locations" },
+      { number: "0–11", label: "Age Range" },
+      { number: "7",    label: "Days a Week" },
+    ],
+    imageSrc: "images/0376e8b9e8e3e782802c617c98f5de07-removebg-preview.png",
+  },
   features: [
     { icon: "🛝", title: "Safe Play Zones",     subtitle: "Designed for every age" },
     { icon: "🎂", title: "Birthday Parties",    subtitle: "Unforgettable celebrations" },
@@ -441,13 +444,30 @@ function HeroEditor({ data, onChange }) {
 }
 
 function StatsEditor({ data, onChange }) {
+  // data = { items: [...], imageSrc: "..." }
+  const items = data.items || data; // backward compat if array
+  const imageSrc = data.imageSrc || "";
+
   const setItem = (i, field, val) => {
-    const next = [...data]; next[i] = { ...next[i], [field]: val }; onChange(next);
+    const next = [...items]; next[i] = { ...next[i], [field]: val };
+    onChange({ ...data, items: next });
   };
+
+  const uploadStatImage = async (file) => {
+    const fd = new FormData();
+    fd.append("stats_image", file);
+    try {
+      const res  = await fetch("/api/cms/upload-stats-image", { method: "POST", body: fd });
+      const json = await res.json();
+      if (json.path) onChange({ ...data, imageSrc: json.path });
+      else alert("Upload failed: " + (json.error || "unknown"));
+    } catch (err) { alert("Upload error: " + err.message); }
+  };
+
   return (
     <SectionCard title="Stats Bar">
-      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-        {data.map((stat, i) => (
+      <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 18 }}>
+        {items.map((stat, i) => (
           <div key={i} style={{ display: "flex", gap: 10 }}>
             <div style={{ flex: 1 }}>
               <label style={{ fontSize: 11, color: "#888", fontWeight: 600, textTransform: "uppercase" }}>Number</label>
@@ -465,6 +485,22 @@ function StatsEditor({ data, onChange }) {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Stats Bar Image Upload */}
+      <div style={{ paddingTop: 14, borderTop: "1px dashed #e0eaf5" }}>
+        <ImageUploadBlock
+          label="Stats Bar Image (e.g. character / mascot)"
+          imageSrc={imageSrc}
+          uploadEndpoint="/api/cms/upload-stats-image"
+          fieldName="stats_image"
+          onChange={(path) => onChange({ ...data, imageSrc: path })}
+        />
+        {imageSrc && (
+          <p style={{ fontSize: 11, color: "#888", margin: "4px 0 0" }}>
+            ✅ Image will appear on the right side of the stats bar — same as <code>img-ss</code> in your HTML.
+          </p>
+        )}
       </div>
     </SectionCard>
   );
@@ -605,14 +641,20 @@ function LivePreview({ data }) {
 
       {/* STATS */}
       <div style={{ display: "flex", gap: 20, padding: "16px 24px", background: "#fff",
-        borderTop: "2px solid #D6EFFA", flexWrap: "wrap", justifyContent: "center" }}>
-        {data.stats.map((s, i) => (
+        borderTop: "2px solid #D6EFFA", flexWrap: "wrap", justifyContent: "center",
+        alignItems: "center" }}>
+        {(data.stats.items || data.stats).map((s, i) => (
           <div key={i} style={{ textAlign: "center" }}>
             <div style={{ fontWeight: 900, fontSize: 22, color: "#1A5FA8" }}>{s.number}</div>
             <div style={{ fontSize: 10, fontWeight: 700, color: "#888",
               textTransform: "uppercase", letterSpacing: 1 }}>{s.label}</div>
           </div>
         ))}
+        {data.stats.imageSrc && (
+          <img src={data.stats.imageSrc} alt="Stats"
+            style={{ height: 70, width: "auto", objectFit: "contain", marginLeft: 8 }}
+            onError={(e) => { e.target.style.display = "none"; }} />
+        )}
       </div>
 
       {/* FEATURES */}
@@ -661,6 +703,9 @@ function LivePreview({ data }) {
 
 function CodeOutput({ data }) {
   const sliderImages = (data.hero.sliderImages || []).filter(Boolean);
+  const statsItems   = data.stats.items || data.stats;
+  const statsImgSrc  = data.stats.imageSrc || "";
+
   const sliderHtml = sliderImages.length > 0
     ? `\n<!-- HERO SLIDER -->\n<div class="hero-slider">\n` +
       sliderImages.map((src, i) =>
@@ -672,6 +717,13 @@ function CodeOutput({ data }) {
       ).join("\n") +
       `\n    </div>\n</div>`
     : '';
+
+  const statsHtml = `\n<!-- STATS BAR -->\n<div class="stats-bar">\n` +
+    statsItems.map((s) =>
+      `    <div class="stat"><div class="stat-number">${s.number}</div><div class="stat-label">${s.label}</div></div>`
+    ).join("\n") +
+    (statsImgSrc ? `\n    <img class="img-ss" src="${statsImgSrc}" alt="Fun Factory">` : "") +
+    `\n</div>`;
 
   const code = `<!-- TOP BANNER -->
 <div class="top-banner">
@@ -705,7 +757,8 @@ ${data.navbar.links.map((l) => `        <li><a href="${l.href}">${l.label}</a></
     <a href="#" class="btn-yellow">${data.hero.cta1}</a>
     <a href="#" class="btn-outline-blue">${data.hero.cta2}</a>
 </div>
-${sliderHtml}`;
+${sliderHtml}
+${statsHtml}`;
 
   return (
     <div style={{ position: "relative" }}>

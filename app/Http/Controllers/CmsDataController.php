@@ -118,6 +118,31 @@ class CmsDataController extends Controller
         ]);
     }
 
+    // ── POST /api/cms/upload-stats-image ────────────────────────
+    // Stats bar character / mascot image upload
+    public function uploadStatsImage(Request $request)
+    {
+        $request->validate([
+            'stats_image' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:2048',
+        ]);
+
+        $file     = $request->file('stats_image');
+        $filename = 'stats_' . time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+        $file->move(public_path('images'), $filename);
+        $fullUrl = asset('images/' . $filename);
+
+        // NOTE: stats.imageSrc eka React state eke manage wenawa.
+        // Save button press karaddi store() method hara DB ektata persist wenawa.
+        // Meka path mathraka return karanawa.
+
+        return response()->json([
+            'success' => true,
+            'path'    => $fullUrl,
+            'url'     => $fullUrl,
+        ]);
+    }
+
     // ── DELETE /api/cms/delete-hero-image ────────────────────────
     // Optional: Server eke file delete karanawa (DB update React ke save() hara wenawa)
     public function deleteHeroImage(Request $request)

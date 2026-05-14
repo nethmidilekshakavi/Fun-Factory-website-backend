@@ -19,6 +19,7 @@ Route::prefix('api/cms')->group(function () {
     Route::post('/ai-edit',     [CmsDataController::class, 'aiEdit']);
     Route::post('/upload-logo', [CmsDataController::class, 'uploadLogo']);
     Route::post('upload-hero-image',  [CmsDataController::class, 'uploadHeroImage']);
+    Route::post('upload-stats-image',  [CmsDataController::class, 'uploadStatsImage']);
 
     // Optional: delete uploaded image from server
     Route::delete('delete-hero-image', [CmsDataController::class, 'deleteHeroImage']);
