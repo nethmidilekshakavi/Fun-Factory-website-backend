@@ -17,5 +17,9 @@ Route::prefix('api/cms')->group(function () {
     Route::get('/all',          [CmsDataController::class, 'show']);
     Route::post('/save',        [CmsDataController::class, 'store']);
     Route::post('/ai-edit',     [CmsDataController::class, 'aiEdit']);
-    Route::post('/upload-logo', [CmsDataController::class, 'uploadLogo']); // ← NEW: logo upload
+    Route::post('/upload-logo', [CmsDataController::class, 'uploadLogo']);
+    Route::post('upload-hero-image',  [CmsDataController::class, 'uploadHeroImage']);
+
+    // Optional: delete uploaded image from server
+    Route::delete('delete-hero-image', [CmsDataController::class, 'deleteHeroImage']);
 });
