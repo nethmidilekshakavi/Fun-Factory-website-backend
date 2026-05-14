@@ -14,7 +14,8 @@ Route::get('/admin/cms', function () {
 
 // ── CMS API Routes ──
 Route::prefix('api/cms')->group(function () {
-    Route::get('/all',        [CmsDataController::class, 'show']);
-    Route::post('/save',      [CmsDataController::class, 'store']);
-    Route::post('/ai-edit',   [CmsDataController::class, 'aiEdit']); // ✅ FIX: now properly proxies to Anthropic
+    Route::get('/all',          [CmsDataController::class, 'show']);
+    Route::post('/save',        [CmsDataController::class, 'store']);
+    Route::post('/ai-edit',     [CmsDataController::class, 'aiEdit']);
+    Route::post('/upload-logo', [CmsDataController::class, 'uploadLogo']); // ← NEW: logo upload
 });
