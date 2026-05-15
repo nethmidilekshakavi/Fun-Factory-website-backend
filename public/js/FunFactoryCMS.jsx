@@ -133,6 +133,48 @@ const defaultData = {
     copyright: "© 2025 Fun Factory — All Rights Reserved.",
     tagline: "Made for kids, by people who love them",
   },
+  services: {
+    eyebrow: "Our Services",
+    heading: "What We Offer",
+    tabs: [
+      {
+        id: "wip",
+        label: "Walk in Play",
+        color: "blue",
+        panelColor: "pink",
+        title: "Walk in Play",
+        desc: "Enjoy our Walk in Play (WiP) facility. Simply pay per child, per hour and you will get billed at the end of your playtime.",
+        rateLabel: "WiP Rate",
+        rateLabelColor: "pink",
+        rate: "Rs.700/- per child & Rs.300/- per Adult per hour",
+        rules: [
+          "Walk-in Play customers are welcomed up until 1 hour prior to closing time (last admission 7pm)",
+          "A parent or guardian (over 18 years old) must accompany children at all times",
+          "Clean socks must be worn at ALL times by children AND adults entering the play area",
+          "Fun Factory Rules of Play must be adhered to at all times",
+        ],
+        imageSrc: "images/WhatsApp%20Image%202026-03-30%20at%203.27.39%20PM.jpeg",
+      },
+      {
+        id: "dns",
+        label: "Drop N Shop",
+        color: "red",
+        panelColor: "green",
+        title: "Drop N Shop",
+        desc: "This service is available for parents whose kids are aged 4–11 years. Younger children will be allowed for the Drop N Shop (DNS) service at the discretion of our staff, depending on availability.\n\nFun Factory DNS enables you to have some much needed retail therapy, do essential grocery shopping in peace or for you to simply enjoy a bit of quiet time, while your kids can have a blast at Fun Factory under the supervision of our trained staff.\n\nDNS is economical too, at just Rs.1000/- per child, per hour of stay. Please note that Fun Factory staff will provide a free bottle of water for each child on admission for DNS.",
+        rateLabel: "DNS Rate",
+        rateLabelColor: "green",
+        rate: "Rs.1000/- per child, per hour of stay",
+        rules: [
+          "Drop N Shop customers are welcome up until 2 hours prior to closing time",
+          "Clean socks must be worn at ALL times by children using the play area",
+          "Fun Factory Rules of Play must be adhered to at all times",
+          "Drop N Shop facility may only be utilized for up to a maximum of 4 hours per child",
+        ],
+        imageSrc: "images/651223192_1474302731405926_2056156611684067743_n.jpg",
+      },
+    ],
+  },
   events: {
     offersTicker: [
       "Member Tuesdays — Half Price Entry",
@@ -236,6 +278,7 @@ const SECTIONS = [
   { key: "missionBanner", label: "Mission Banner", icon: "💬" },
   { key: "footer",      label: "Footer",           icon: "📄" },
   { key: "events",      label: "Events & Promos",  icon: "🎉" },
+  { key: "services",    label: "Services",         icon: "🎟️" },
 ];
 
 const MAX_SLIDER_IMAGES = 6;
@@ -1064,6 +1107,243 @@ function FacilitiesEditor({ data, onChange }) {
   );
 }
 
+// ════ SERVICES EDITOR ════
+
+const SVC_TAB_COLORS  = ["blue","red","yellow","green","orange"];
+const SVC_PANEL_COLORS = ["pink","green","blue","yellow","orange"];
+
+function ServiceTabEditor({ tab, index, onChange, onRemove }) {
+  const set = (field, val) => onChange({ ...tab, [field]: val });
+  const [uploading, setUploading] = useState(false);
+
+  const uploadImage = (file) => {
+    if (!file) return;
+    setUploading(true);
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const base64 = e.target.result;
+      set("imageSrc", base64);
+      try {
+        const fd = new FormData();
+        fd.append("svc_image", file);
+        const res = await fetch("/api/cms/upload-event-image", { method: "POST", body: fd });
+        const ct  = res.headers.get("content-type") || "";
+        if (ct.includes("application/json")) {
+          const json = await res.json();
+          if (json.path) set("imageSrc", json.path);
+        }
+      } catch (_) {}
+      setUploading(false);
+    };
+    reader.onerror = () => setUploading(false);
+    reader.readAsDataURL(file);
+  };
+
+  const setRule = (i, val) => {
+    const next = [...tab.rules]; next[i] = val; set("rules", next);
+  };
+  const addRule    = () => set("rules", [...tab.rules, "New rule"]);
+  const removeRule = (i) => set("rules", tab.rules.filter((_, idx) => idx !== i));
+
+  return (
+    <div style={{ border: "1.5px solid #d0e0f0", borderRadius: 14, padding: "18px 18px",
+      background: "#f8fbff", marginBottom: 16, position: "relative" }}>
+      <div style={{ position: "absolute", top: 12, right: 12 }}>
+        <button onClick={onRemove}
+          style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+            borderRadius: 8, padding: "5px 10px", cursor: "pointer", fontSize: 12, fontWeight: 700 }}>✕ Remove Tab</button>
+      </div>
+
+      <div style={{ fontSize: 12, fontWeight: 800, color: "#1a5fa8", marginBottom: 14,
+        textTransform: "uppercase", letterSpacing: 0.5 }}>Tab {index + 1}</div>
+
+      {/* Tab button settings */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 14 }}>
+        <div>
+          <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Tab ID (unique)</label>
+          <input value={tab.id || ""} onChange={(e) => set("id", e.target.value)}
+            placeholder="e.g. wip"
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+              color: "#222", boxSizing: "border-box", marginTop: 4 }} />
+        </div>
+        <div>
+          <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Tab Button Label</label>
+          <input value={tab.label || ""} onChange={(e) => set("label", e.target.value)}
+            placeholder="e.g. Walk in Play"
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+              color: "#222", boxSizing: "border-box", marginTop: 4 }} />
+        </div>
+        <div>
+          <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Tab Button Color</label>
+          <select value={tab.color || "blue"} onChange={(e) => set("color", e.target.value)}
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+              color: "#222", boxSizing: "border-box", marginTop: 4, cursor: "pointer" }}>
+            {SVC_TAB_COLORS.map((c) => <option key={c} value={c}>{c.charAt(0).toUpperCase()+c.slice(1)}</option>)}
+          </select>
+        </div>
+      </div>
+
+      {/* Panel settings */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 14 }}>
+        <div>
+          <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Panel Title</label>
+          <input value={tab.title || ""} onChange={(e) => set("title", e.target.value)}
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+              color: "#222", boxSizing: "border-box", marginTop: 4 }} />
+        </div>
+        <div>
+          <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Panel Background Color</label>
+          <select value={tab.panelColor || "pink"} onChange={(e) => set("panelColor", e.target.value)}
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+              color: "#222", boxSizing: "border-box", marginTop: 4, cursor: "pointer" }}>
+            {SVC_PANEL_COLORS.map((c) => <option key={c} value={c}>{c.charAt(0).toUpperCase()+c.slice(1)}</option>)}
+          </select>
+        </div>
+      </div>
+
+      {/* Description */}
+      <div style={{ marginBottom: 14 }}>
+        <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Description</label>
+        <textarea value={tab.desc || ""} onChange={(e) => set("desc", e.target.value)} rows={4}
+          style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+            padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+            color: "#222", boxSizing: "border-box", marginTop: 4, resize: "vertical",
+            fontFamily: "inherit" }} />
+        <p style={{ fontSize: 11, color: "#aaa", margin: "3px 0 0" }}>Use \n\n for paragraph breaks</p>
+      </div>
+
+      {/* Rate */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 14 }}>
+        <div>
+          <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Rate Label</label>
+          <input value={tab.rateLabel || ""} onChange={(e) => set("rateLabel", e.target.value)}
+            placeholder="e.g. WiP Rate"
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+              color: "#222", boxSizing: "border-box", marginTop: 4 }} />
+        </div>
+        <div>
+          <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Rate Label Color</label>
+          <select value={tab.rateLabelColor || "pink"} onChange={(e) => set("rateLabelColor", e.target.value)}
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+              color: "#222", boxSizing: "border-box", marginTop: 4, cursor: "pointer" }}>
+            {SVC_PANEL_COLORS.map((c) => <option key={c} value={c}>{c.charAt(0).toUpperCase()+c.slice(1)}</option>)}
+          </select>
+        </div>
+        <div>
+          <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Rate Text</label>
+          <input value={tab.rate || ""} onChange={(e) => set("rate", e.target.value)}
+            placeholder="e.g. Rs.700/- per child..."
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+              color: "#222", boxSizing: "border-box", marginTop: 4 }} />
+        </div>
+      </div>
+
+      {/* Rules */}
+      <div style={{ marginBottom: 14 }}>
+        <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase", display: "block", marginBottom: 8 }}>Rules / Bullet Points</label>
+        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          {(tab.rules || []).map((rule, i) => (
+            <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+              <textarea value={rule} onChange={(e) => setRule(i, e.target.value)} rows={2}
+                style={{ flex: 1, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                  padding: "7px 10px", fontSize: 12, outline: "none", background: "#fff",
+                  color: "#222", resize: "vertical", fontFamily: "inherit" }} />
+              <button onClick={() => removeRule(i)}
+                style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+                  borderRadius: 8, padding: "7px 10px", cursor: "pointer", fontSize: 12,
+                  fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✕</button>
+            </div>
+          ))}
+        </div>
+        <button onClick={addRule}
+          style={{ marginTop: 8, background: "#e0edff", color: "#1a5fa8", border: "none",
+            borderRadius: 8, padding: "7px 14px", cursor: "pointer", fontSize: 12, fontWeight: 700 }}>
+          + Add Rule
+        </button>
+      </div>
+
+      {/* Image */}
+      <div>
+        <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase", display: "block", marginBottom: 8 }}>Panel Image</label>
+        <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+          <div style={{ width: 100, height: 70, borderRadius: 8, border: "1.5px solid #d0e0f0",
+            background: "#f0f4f8", overflow: "hidden", flexShrink: 0, display: "flex",
+            alignItems: "center", justifyContent: "center" }}>
+            {tab.imageSrc
+              ? <img src={tab.imageSrc} alt="preview"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  onError={(e) => { e.target.style.display = "none"; }} />
+              : <span style={{ fontSize: 10, color: "#bbb" }}>No img</span>
+            }
+          </div>
+          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 6 }}>
+            <input type="text" value={tab.imageSrc || ""} onChange={(e) => set("imageSrc", e.target.value)}
+              placeholder="Image path or URL (e.g. images/photo.jpg)"
+              style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                padding: "6px 10px", fontSize: 12, outline: "none", background: "#fff",
+                color: "#444", boxSizing: "border-box" }} />
+            <label style={{ display: "inline-flex", alignItems: "center", gap: 5,
+              background: uploading ? "#d0e8d0" : "#e0edff",
+              color: uploading ? "#1a7a1a" : "#1a5fa8", borderRadius: 8,
+              padding: "6px 12px", cursor: uploading ? "default" : "pointer",
+              fontSize: 12, fontWeight: 700, width: "fit-content" }}>
+              {uploading ? "⏳ Loading..." : "🖼 Upload Image"}
+              <input type="file" accept="image/*" style={{ display: "none" }}
+                onChange={(e) => { const f = e.target.files[0]; if (f) uploadImage(f); }} />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ServicesEditor({ data, onChange }) {
+  const set = (k, v) => onChange({ ...data, [k]: v });
+  const tabs = data.tabs || [];
+
+  const updateTab  = (i, val) => { const n = [...tabs]; n[i] = val; set("tabs", n); };
+  const removeTab  = (i) => set("tabs", tabs.filter((_, idx) => idx !== i));
+  const addTab     = () => set("tabs", [...tabs, {
+    id: "new-tab", label: "New Service", color: "blue", panelColor: "pink",
+    title: "New Service", desc: "Describe this service here.", rateLabel: "Rate",
+    rateLabelColor: "pink", rate: "Rs.XXX/- per child", rules: ["Rule 1"], imageSrc: "",
+  }]);
+
+  return (
+    <div>
+      <SectionCard title="Section Header">
+        <Field label="Eyebrow text" value={data.eyebrow || ""} onChange={(v) => set("eyebrow", v)} hint="Small uppercase label above heading" />
+        <Field label="Main Heading" value={data.heading || ""} onChange={(v) => set("heading", v)} />
+      </SectionCard>
+
+      <SectionCard title="Service Tabs">
+        <p style={{ fontSize: 11, color: "#888", margin: "0 0 14px" }}>
+          Each tab = one service panel. The first tab is shown by default.
+        </p>
+        {tabs.map((tab, i) => (
+          <ServiceTabEditor key={i} tab={tab} index={i}
+            onChange={(val) => updateTab(i, val)}
+            onRemove={() => removeTab(i)} />
+        ))}
+        <button onClick={addTab}
+          style={{ background: "#e0edff", color: "#1a5fa8", border: "none",
+            borderRadius: 8, padding: "10px 20px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+          + Add Service Tab
+        </button>
+      </SectionCard>
+    </div>
+  );
+}
+
 // ════ EVENTS & PROMOTIONS EDITOR ════
 
 const BTN_COLORS = [
@@ -1727,6 +2007,58 @@ function LivePreview({ data }) {
         </div>
       </div>
 
+      {/* SERVICES */}
+      {data.services && (data.services.tabs || []).length > 0 && (() => {
+        const svc = data.services;
+        const firstTab = svc.tabs[0];
+        const panelBg = firstTab.panelColor === "pink" ? "#fce4ec"
+          : firstTab.panelColor === "green"  ? "#e8f5e9"
+          : firstTab.panelColor === "blue"   ? "#e3f2fd"
+          : firstTab.panelColor === "yellow" ? "#fffde7"
+          : "#fff3e0";
+        const tabColors = { blue: "#3BAEE8", red: "#E63329", yellow: "#F7C416", green: "#4caf50", orange: "#F47920" };
+        return (
+          <div style={{ padding: "24px 24px", background: "#fff", borderTop: "2px solid #e0eaf5" }}>
+            <div style={{ fontSize: 11, fontWeight: 800, color: "#3BAEE8",
+              textTransform: "uppercase", letterSpacing: 2, marginBottom: 4 }}>{svc.eyebrow}</div>
+            <div style={{ fontFamily: "serif", fontSize: 20, fontWeight: 900, marginBottom: 14 }}>{svc.heading}</div>
+            {/* Tabs */}
+            <div style={{ display: "flex", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
+              {svc.tabs.map((t, i) => (
+                <span key={i} style={{ background: tabColors[t.color] || "#3BAEE8",
+                  color: "#fff", fontWeight: 800, fontSize: 12, padding: "7px 18px",
+                  borderRadius: 24, display: "inline-block" }}>{t.label}</span>
+              ))}
+            </div>
+            {/* First panel preview */}
+            <div style={{ background: panelBg, borderRadius: 16, padding: "18px 20px",
+              display: "flex", gap: 20, flexWrap: "wrap" }}>
+              <div style={{ flex: 1, minWidth: 200 }}>
+                <div style={{ fontWeight: 900, fontSize: 16, marginBottom: 8 }}>{firstTab.title}</div>
+                <div style={{ fontSize: 11, color: "#555", lineHeight: 1.6, marginBottom: 10 }}>
+                  {(firstTab.desc || "").split("\n\n")[0]}
+                </div>
+                <div style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase",
+                  color: "#E63329", marginBottom: 3 }}>{firstTab.rateLabel}</div>
+                <div style={{ fontSize: 13, fontWeight: 900, marginBottom: 10 }}>{firstTab.rate}</div>
+                <ul style={{ paddingLeft: 16, margin: 0 }}>
+                  {(firstTab.rules || []).slice(0,3).map((r, i) => (
+                    <li key={i} style={{ fontSize: 10, color: "#444", marginBottom: 4, lineHeight: 1.5 }}>{r}</li>
+                  ))}
+                </ul>
+              </div>
+              {firstTab.imageSrc && (
+                <div style={{ width: 160, flexShrink: 0 }}>
+                  <img src={firstTab.imageSrc} alt={firstTab.title}
+                    style={{ width: "100%", height: 110, objectFit: "cover", borderRadius: 10 }}
+                    onError={(e) => { e.target.style.display = "none"; }} />
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })()}
+
       {/* FOOTER */}
       <div style={{ background: "#0e3d6e", color: "rgba(255,255,255,0.5)",
         textAlign: "center", padding: "14px", fontSize: 11 }}>
@@ -1960,6 +2292,46 @@ ${(evData.promotions || []).map((card) =>
     </div>
 </section>`;
 
+  const svcData = data.services || defaultData.services;
+  const servicesHtml = `
+<!-- SERVICES SECTION -->
+<section class="services-section" id="services-section">
+    <p class="services-eyebrow">${svcData.eyebrow || ""}</p>
+    <h2 class="services-heading">${svcData.heading || ""}</h2>
+
+    <div class="services-tabs">
+${(svcData.tabs || []).map((t, i) =>
+`        <button class="svc-tab-btn svc-tab-${t.color}${i === 0 ? ' active' : ''}" onclick="switchTab('${t.id}')">
+            ${t.label}
+        </button>`).join("\n")}
+    </div>
+
+${(svcData.tabs || []).map((t, i) => {
+  const paragraphs = (t.desc || "").split("\n\n").filter(Boolean);
+  return `    <div class="services-panel${i === 0 ? ' active' : ''}" id="panel-${t.id}">
+        <div class="svc-panel-inner panel-${t.panelColor}">
+            <div class="svc-content-wrapper">
+                <div class="svc-text-content">
+                    <h3 class="svc-panel-title">${t.title}</h3>
+                    ${paragraphs.map((p) => `<p class="svc-desc">${p}</p>`).join("\n                    ")}
+
+                    <div class="svc-rate-label rate-${t.rateLabelColor}">${t.rateLabel}</div>
+                    <div class="svc-rate">${t.rate}</div>
+
+                    <ul class="svc-rules">
+${(t.rules || []).map((r) => `                        <li>${r}</li>`).join("\n")}
+                    </ul>
+                </div>
+
+                <div class="svc-image-wrapper">
+                    <img src="${t.imageSrc || ""}" alt="${t.title}" class="svc-image" />
+                </div>
+            </div>
+        </div>
+    </div>`;
+}).join("\n\n")}
+</section>`;
+
   const code = `<!-- TOP BANNER -->
 <div class="top-banner">
     ${data.topBanner.emoji} ${data.topBanner.text}
@@ -1999,7 +2371,8 @@ ${ageBannerHtml}
 ${facilitiesHtml}
 ${whoWeAreHtml}
 ${missionHtml}
-${eventsHtml}`;
+${eventsHtml}
+${servicesHtml}`;
 
   return (
     <div style={{ position: "relative" }}>
@@ -2101,6 +2474,7 @@ Reply ONLY with a valid JSON object matching the same structure. No explanation,
       case "missionBanner": return <MissionBannerEditor data={data.missionBanner || defaultData.missionBanner}     onChange={(v) => updateSection("missionBanner", v)} />;
       case "footer":        return <FooterEditor        data={data.footer}                                         onChange={(v) => updateSection("footer", v)} />;
       case "events":        return <EventsEditor        data={data.events || defaultData.events}                   onChange={(v) => updateSection("events", v)} />;
+      case "services":      return <ServicesEditor      data={data.services || defaultData.services}               onChange={(v) => updateSection("services", v)} />;
       default: return null;
     }
   };
