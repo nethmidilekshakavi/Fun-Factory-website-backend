@@ -133,6 +133,93 @@ const defaultData = {
     copyright: "© 2025 Fun Factory — All Rights Reserved.",
     tagline: "Made for kids, by people who love them",
   },
+  events: {
+    offersTicker: [
+      "Member Tuesdays — Half Price Entry",
+      "School Holiday Extended Hours",
+    ],
+    openingHours: [
+      { day: "Wed – Sun",       time: "10am – 8pm" },
+      { day: "Public Holidays", time: "10am – 8pm" },
+      { day: "Walk-in cutoff",  time: "1hr before close",  muted: true },
+      { day: "Drop & Shop",     time: "2hrs before close", muted: true },
+    ],
+    openingHoursNote: "Party & private function bookings available any day of the week.",
+    goodToKnow: [
+      { key: "Socks required",  val: "Always",       red: false },
+      { key: "Buy socks at door", val: "Rs. 150/pair", red: false },
+      { key: "Adult supervision", val: "Required",    red: false },
+      { key: "Outside food",    val: "Not allowed",   red: true  },
+    ],
+    goodToKnowNote: "Baby bottles & baby food are permitted in the café area only.",
+    upcomingEvents: [
+      {
+        name: "Avurudu Celebrations",
+        time: "10:00AM – 6:00PM",
+        desc: "Traditional games & sweets for all kids",
+        branch: "Both Branches",
+        btnLabel: "JOIN",
+        btnColor: "orange",
+        imageSrc: "images/492725408_1190953956407473_110490148171043934_n.jpg",
+      },
+      {
+        name: "Vesak Dansal",
+        time: "10:00AM – 4:00PM",
+        desc: "Free food & drinks, kindness sharing & blessings",
+        branch: "Nawala",
+        btnLabel: "JOIN",
+        btnColor: "orange",
+        imageSrc: "images/493672107_1207686458067556_5267432246469511647_n.jpg",
+      },
+      {
+        name: "Halloween Bash",
+        time: "2:00PM – 8:00PM",
+        desc: "Costumes, tricks or treat & spooky fun",
+        branch: "Mt.Lavinia",
+        btnLabel: "JOIN",
+        btnColor: "orange",
+        imageSrc: "images/576410636_1362977132538487_8021019557532296402_n.jpg",
+      },
+      {
+        name: "Christmas Celebration",
+        time: "5:00PM – 9:00PM",
+        desc: "Carols, gifts exchange & festive treats 🎄",
+        branch: "Nawala | Mt.Lavinia",
+        btnLabel: "JOIN",
+        btnColor: "orange",
+        imageSrc: "images/605534817_1401008218735378_4970002196180113957_n.jpg",
+      },
+    ],
+    promotions: [
+      {
+        name: "Birthday Package",
+        time: "",
+        desc: "Party room + decorations + full venue access",
+        branch: "All Year",
+        btnLabel: "BOOK",
+        btnColor: "blue",
+        imageSrc: "images/656482262_1479871457515720_8891376628289396432_n.jpg",
+      },
+      {
+        name: "Member Tuesday",
+        time: "",
+        desc: "Half-price entry every Tuesday for members.",
+        branch: "Every Tue",
+        btnLabel: "JOIN",
+        btnColor: "orange",
+        imageSrc: "images/525882933_1270897245079810_7566232732536309976_n.jpg",
+      },
+      {
+        name: "Drop & Shop",
+        time: "",
+        desc: "Leave kids safely & go shopping - up to 2hrs.",
+        branch: "Daily",
+        btnLabel: "INFO",
+        btnColor: "yellow",
+        imageSrc: "images/651843227_1474302798072586_3381062534841297678_n.jpg",
+      },
+    ],
+  },
 };
 
 const SECTIONS = [
@@ -148,6 +235,7 @@ const SECTIONS = [
   { key: "whoWeAre",    label: "Who We Are",       icon: "🏫" },
   { key: "missionBanner", label: "Mission Banner", icon: "💬" },
   { key: "footer",      label: "Footer",           icon: "📄" },
+  { key: "events",      label: "Events & Promos",  icon: "🎉" },
 ];
 
 const MAX_SLIDER_IMAGES = 6;
@@ -976,6 +1064,307 @@ function FacilitiesEditor({ data, onChange }) {
   );
 }
 
+// ════ EVENTS & PROMOTIONS EDITOR ════
+
+const BTN_COLORS = [
+  { value: "orange", label: "Orange" },
+  { value: "blue",   label: "Blue"   },
+  { value: "yellow", label: "Yellow" },
+];
+
+function EventCardEditor({ card, index, onChange, onRemove, uploadEndpoint }) {
+  const set = (field, val) => onChange({ ...card, [field]: val });
+  const [uploading, setUploading] = useState(false);
+
+  const uploadImage = (file) => {
+    if (!file) return;
+    setUploading(true);
+    // Step 1: instant base64 preview — no server needed
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const base64 = e.target.result;
+      set("imageSrc", base64); // preview right away
+      // Step 2: try server upload silently in background
+      try {
+        const fd = new FormData();
+        fd.append("event_image", file);
+        const res = await fetch(uploadEndpoint, { method: "POST", body: fd });
+        const ct  = res.headers.get("content-type") || "";
+        if (ct.includes("application/json")) {
+          const json = await res.json();
+          if (json.path) set("imageSrc", json.path); // swap base64 → server path
+        }
+        // Server returns HTML / 404 → silently keep base64, no error popup
+      } catch (_) {}
+      setUploading(false);
+    };
+    reader.onerror = () => setUploading(false);
+    reader.readAsDataURL(file);
+  };
+
+  const btnBg = card.btnColor === "orange" ? "#F47920" : card.btnColor === "blue" ? "#1A5FA8" : "#F7C416";
+
+  return (
+    <div style={{ border: "1.5px solid #d0e0f0", borderRadius: 12, padding: "14px 16px",
+      background: "#f8fbff", position: "relative", marginBottom: 12 }}>
+      <div style={{ position: "absolute", top: 10, right: 10 }}>
+        <button onClick={onRemove}
+          style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+            borderRadius: 8, padding: "5px 10px", cursor: "pointer", fontSize: 12, fontWeight: 700 }}>✕</button>
+      </div>
+      <div style={{ fontSize: 11, fontWeight: 800, color: "#1a5fa8", marginBottom: 10,
+        textTransform: "uppercase", letterSpacing: 0.5 }}>Card {index + 1}</div>
+
+      {/* Image row */}
+      <div style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 12 }}>
+        <div style={{ width: 80, height: 60, borderRadius: 8, border: "1.5px solid #d0e0f0",
+          background: "#f0f4f8", overflow: "hidden", flexShrink: 0, display: "flex",
+          alignItems: "center", justifyContent: "center" }}>
+          {card.imageSrc
+            ? <img src={card.imageSrc} alt="event"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                onError={(e) => { e.target.style.display = "none"; }} />
+            : <span style={{ fontSize: 10, color: "#bbb" }}>No img</span>
+          }
+        </div>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 6 }}>
+          <input type="text" value={card.imageSrc || ""} onChange={(e) => set("imageSrc", e.target.value)}
+            placeholder="Image path or URL"
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "6px 10px", fontSize: 12, outline: "none", background: "#fff",
+              color: "#444", boxSizing: "border-box" }} />
+          <label style={{ display: "inline-flex", alignItems: "center", gap: 5,
+            background: uploading ? "#d0e8d0" : "#e0edff",
+            color: uploading ? "#1a7a1a" : "#1a5fa8", borderRadius: 8,
+            padding: "6px 12px", cursor: uploading ? "default" : "pointer",
+            fontSize: 12, fontWeight: 700, width: "fit-content" }}>
+            {uploading ? "⏳ Loading..." : "🖼 Upload Image"}
+            <input type="file" accept="image/*" style={{ display: "none" }}
+              onChange={(e) => { const f = e.target.files[0]; if (f) uploadImage(f); }} />
+          </label>
+        </div>
+      </div>
+
+      {/* Fields */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 8 }}>
+        <div>
+          <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Event Name</label>
+          <input value={card.name} onChange={(e) => set("name", e.target.value)}
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+              color: "#222", boxSizing: "border-box", marginTop: 4 }} />
+        </div>
+        <div>
+          <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Time (optional)</label>
+          <input value={card.time || ""} onChange={(e) => set("time", e.target.value)}
+            placeholder="e.g. 10:00AM – 6:00PM"
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+              color: "#222", boxSizing: "border-box", marginTop: 4 }} />
+        </div>
+      </div>
+      <div style={{ marginBottom: 8 }}>
+        <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Description</label>
+        <textarea value={card.desc} onChange={(e) => set("desc", e.target.value)} rows={2}
+          style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+            padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+            color: "#222", boxSizing: "border-box", marginTop: 4, resize: "vertical",
+            fontFamily: "inherit" }} />
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
+        <div>
+          <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Branch / Tag</label>
+          <input value={card.branch} onChange={(e) => set("branch", e.target.value)}
+            placeholder="e.g. Both Branches"
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+              color: "#222", boxSizing: "border-box", marginTop: 4 }} />
+        </div>
+        <div>
+          <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Button Label</label>
+          <input value={card.btnLabel} onChange={(e) => set("btnLabel", e.target.value)}
+            placeholder="e.g. JOIN"
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+              color: "#222", boxSizing: "border-box", marginTop: 4 }} />
+        </div>
+        <div>
+          <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Button Color</label>
+          <div style={{ display: "flex", gap: 6, marginTop: 6, alignItems: "center" }}>
+            {BTN_COLORS.map((c) => (
+              <button key={c.value} onClick={() => set("btnColor", c.value)}
+                style={{ width: 28, height: 28, borderRadius: 8, border: `2px solid ${card.btnColor === c.value ? "#1a3a6b" : "#d0e0f0"}`,
+                  background: c.value === "orange" ? "#F47920" : c.value === "blue" ? "#1A5FA8" : "#F7C416",
+                  cursor: "pointer", transform: card.btnColor === c.value ? "scale(1.2)" : "scale(1)",
+                  transition: "all 0.15s" }} title={c.label} />
+            ))}
+            <span style={{ fontSize: 11, fontWeight: 700, color: "#555",
+              background: btnBg, color: "#fff", borderRadius: 6, padding: "3px 10px",
+              marginLeft: 4 }}>{card.btnLabel || "BTN"}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EventsEditor({ data, onChange }) {
+  const set = (k, v) => onChange({ ...data, [k]: v });
+
+  // ── Offers Ticker ──
+  const addTicker    = () => set("offersTicker", [...(data.offersTicker || []), "New Offer"]);
+  const removeTicker = (i) => set("offersTicker", data.offersTicker.filter((_, idx) => idx !== i));
+  const setTicker    = (i, v) => { const n = [...data.offersTicker]; n[i] = v; set("offersTicker", n); };
+
+  // ── Opening Hours ──
+  const addHour    = () => set("openingHours", [...data.openingHours, { day: "New Day", time: "10am – 8pm", muted: false }]);
+  const removeHour = (i) => set("openingHours", data.openingHours.filter((_, idx) => idx !== i));
+  const setHour    = (i, field, v) => { const n = [...data.openingHours]; n[i] = { ...n[i], [field]: v }; set("openingHours", n); };
+
+  // ── Good to Know ──
+  const addKnow    = () => set("goodToKnow", [...data.goodToKnow, { key: "New rule", val: "Info", red: false }]);
+  const removeKnow = (i) => set("goodToKnow", data.goodToKnow.filter((_, idx) => idx !== i));
+  const setKnow    = (i, field, v) => { const n = [...data.goodToKnow]; n[i] = { ...n[i], [field]: v }; set("goodToKnow", n); };
+
+  // ── Event Cards ──
+  const addEvent = (type) => {
+    const newCard = { name: "New Event", time: "", desc: "Description here", branch: "Both Branches", btnLabel: "JOIN", btnColor: "orange", imageSrc: "" };
+    set(type, [...(data[type] || []), newCard]);
+  };
+  const removeEvent  = (type, i) => set(type, data[type].filter((_, idx) => idx !== i));
+  const updateEvent  = (type, i, val) => { const n = [...data[type]]; n[i] = val; set(type, n); };
+
+  return (
+    <div>
+      {/* OFFERS TICKER */}
+      <SectionCard title="📢 Offers Ticker (scrolling banner)">
+        <p style={{ fontSize: 11, color: "#888", margin: "0 0 12px" }}>
+          These messages scroll across the top of the Events section.
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {(data.offersTicker || []).map((item, i) => (
+            <div key={i} style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <input value={item} onChange={(e) => setTicker(i, e.target.value)}
+                style={{ flex: 1, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                  padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff", color: "#222" }} />
+              <button onClick={() => removeTicker(i)}
+                style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+                  borderRadius: 8, padding: "7px 12px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>✕</button>
+            </div>
+          ))}
+        </div>
+        <button onClick={addTicker}
+          style={{ marginTop: 10, background: "#e0edff", color: "#1a5fa8", border: "none",
+            borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+          + Add Ticker Item
+        </button>
+      </SectionCard>
+
+      {/* OPENING HOURS */}
+      <SectionCard title="🕐 Opening Hours (sidebar)">
+        <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 12 }}>
+          {(data.openingHours || []).map((row, i) => (
+            <div key={i} style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <input value={row.day} onChange={(e) => setHour(i, "day", e.target.value)}
+                placeholder="Day label"
+                style={{ flex: 1, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                  padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff", color: "#222" }} />
+              <input value={row.time} onChange={(e) => setHour(i, "time", e.target.value)}
+                placeholder="Time"
+                style={{ flex: 1, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                  padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff", color: "#222" }} />
+              <label style={{ display: "flex", alignItems: "center", gap: 4,
+                fontSize: 11, fontWeight: 600, color: "#888", whiteSpace: "nowrap", cursor: "pointer" }}>
+                <input type="checkbox" checked={!!row.muted} onChange={(e) => setHour(i, "muted", e.target.checked)}
+                  style={{ accentColor: "#1a5fa8", width: 14, height: 14 }} />
+                Muted
+              </label>
+              <button onClick={() => removeHour(i)}
+                style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+                  borderRadius: 8, padding: "7px 12px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>✕</button>
+            </div>
+          ))}
+        </div>
+        <button onClick={addHour}
+          style={{ background: "#e0edff", color: "#1a5fa8", border: "none",
+            borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+          + Add Row
+        </button>
+        <div style={{ marginTop: 14 }}>
+          <Field label="Note below hours" value={data.openingHoursNote || ""}
+            onChange={(v) => set("openingHoursNote", v)} multiline />
+        </div>
+      </SectionCard>
+
+      {/* GOOD TO KNOW */}
+      <SectionCard title="ℹ️ Good to Know (sidebar)">
+        <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 12 }}>
+          {(data.goodToKnow || []).map((row, i) => (
+            <div key={i} style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <input value={row.key} onChange={(e) => setKnow(i, "key", e.target.value)}
+                placeholder="Label"
+                style={{ flex: 1, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                  padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff", color: "#222" }} />
+              <input value={row.val} onChange={(e) => setKnow(i, "val", e.target.value)}
+                placeholder="Value"
+                style={{ flex: 1, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                  padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff", color: "#222" }} />
+              <label style={{ display: "flex", alignItems: "center", gap: 4,
+                fontSize: 11, fontWeight: 600, color: "#c00", whiteSpace: "nowrap", cursor: "pointer" }}>
+                <input type="checkbox" checked={!!row.red} onChange={(e) => setKnow(i, "red", e.target.checked)}
+                  style={{ accentColor: "#c00", width: 14, height: 14 }} />
+                Red
+              </label>
+              <button onClick={() => removeKnow(i)}
+                style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+                  borderRadius: 8, padding: "7px 12px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>✕</button>
+            </div>
+          ))}
+        </div>
+        <button onClick={addKnow}
+          style={{ background: "#e0edff", color: "#1a5fa8", border: "none",
+            borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+          + Add Row
+        </button>
+        <div style={{ marginTop: 14 }}>
+          <Field label="Note below Good to Know" value={data.goodToKnowNote || ""}
+            onChange={(v) => set("goodToKnowNote", v)} multiline />
+        </div>
+      </SectionCard>
+
+      {/* UPCOMING EVENTS */}
+      <SectionCard title="📅 Upcoming Events Cards">
+        {(data.upcomingEvents || []).map((card, i) => (
+          <EventCardEditor key={i} card={card} index={i}
+            uploadEndpoint="/api/cms/upload-event-image"
+            onChange={(val) => updateEvent("upcomingEvents", i, val)}
+            onRemove={() => removeEvent("upcomingEvents", i)} />
+        ))}
+        <button onClick={() => addEvent("upcomingEvents")}
+          style={{ background: "#e0edff", color: "#1a5fa8", border: "none",
+            borderRadius: 8, padding: "9px 18px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+          + Add Event Card
+        </button>
+      </SectionCard>
+
+      {/* PROMOTIONS */}
+      <SectionCard title="🏷️ Current Promotions Cards">
+        {(data.promotions || []).map((card, i) => (
+          <EventCardEditor key={i} card={card} index={i}
+            uploadEndpoint="/api/cms/upload-event-image"
+            onChange={(val) => updateEvent("promotions", i, val)}
+            onRemove={() => removeEvent("promotions", i)} />
+        ))}
+        <button onClick={() => addEvent("promotions")}
+          style={{ background: "#e0edff", color: "#1a5fa8", border: "none",
+            borderRadius: 8, padding: "9px 18px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+          + Add Promotion Card
+        </button>
+      </SectionCard>
+    </div>
+  );
+}
+
 // ════ LIVE PREVIEW ════
 
 function LivePreview({ data }) {
@@ -1197,6 +1586,117 @@ function LivePreview({ data }) {
         </div>
       )}
 
+      {/* EVENTS & PROMOTIONS */}
+      {data.events && (
+        <div style={{ background: "#f7f9fc", padding: "20px 24px", borderTop: "2px solid #e0eaf5" }}>
+          {/* Ticker */}
+          <div style={{ background: "#F7C416", padding: "6px 16px", borderRadius: 8, marginBottom: 14,
+            fontSize: 11, fontWeight: 800, color: "#1a1a2e", display: "flex", gap: 10, flexWrap: "wrap" }}>
+            <span style={{ background: "#1a1a2e", color: "#F7C416", padding: "2px 8px", borderRadius: 4, marginRight: 8 }}>OFFERS</span>
+            {(data.events.offersTicker || []).map((t, i) => <span key={i}>• {t}</span>)}
+          </div>
+
+          {/* Main layout */}
+          <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
+            {/* Sidebar */}
+            <div style={{ minWidth: 160, flex: "0 0 180px", display: "flex", flexDirection: "column", gap: 12 }}>
+              <div style={{ background: "#fff", border: "1.5px solid #e0eaf5", borderRadius: 12, padding: "14px" }}>
+                <div style={{ fontWeight: 800, fontSize: 13, marginBottom: 8, color: "#1a3a6b" }}>Opening Hours</div>
+                {(data.events.openingHours || []).map((row, i) => (
+                  <div key={i} style={{ display: "flex", justifyContent: "space-between", gap: 8,
+                    fontSize: 11, marginBottom: 4, color: row.muted ? "#999" : "#222" }}>
+                    <span>{row.day}</span><span style={{ fontWeight: row.muted ? 400 : 700 }}>{row.time}</span>
+                  </div>
+                ))}
+                {data.events.openingHoursNote && (
+                  <div style={{ fontSize: 10, color: "#888", marginTop: 8, fontStyle: "italic" }}>{data.events.openingHoursNote}</div>
+                )}
+              </div>
+              <div style={{ background: "#fffde7", border: "1.5px solid #fdd835", borderRadius: 12, padding: "14px" }}>
+                <div style={{ fontWeight: 800, fontSize: 13, marginBottom: 8, color: "#1a3a6b" }}>Good to Know</div>
+                {(data.events.goodToKnow || []).map((row, i) => (
+                  <div key={i} style={{ display: "flex", justifyContent: "space-between", gap: 8,
+                    fontSize: 11, marginBottom: 4 }}>
+                    <span style={{ color: "#555" }}>{row.key}</span>
+                    <span style={{ fontWeight: 700, color: row.red ? "#c00" : "#222" }}>{row.val}</span>
+                  </div>
+                ))}
+                {data.events.goodToKnowNote && (
+                  <div style={{ fontSize: 10, color: "#888", marginTop: 8, fontStyle: "italic" }}>{data.events.goodToKnowNote}</div>
+                )}
+              </div>
+            </div>
+
+            {/* Cards area */}
+            <div style={{ flex: 1, minWidth: 240 }}>
+              <div style={{ fontWeight: 900, fontSize: 18, color: "#1a1a2e", marginBottom: 4 }}>🎉 Events & Promotions</div>
+              <div style={{ fontSize: 11, color: "#888", marginBottom: 14 }}>Special deals, seasonal celebrations & exciting events</div>
+
+              {/* Upcoming Events */}
+              <div style={{ fontWeight: 800, fontSize: 13, color: "#1a3a6b", marginBottom: 10 }}>Upcoming Events</div>
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 18 }}>
+                {(data.events.upcomingEvents || []).map((card, i) => (
+                  <div key={i} style={{ flex: "1 1 140px", background: "#fff", borderRadius: 12,
+                    border: "1.5px solid #e0eaf5", overflow: "hidden", minWidth: 130 }}>
+                    <div style={{ height: 70, background: "#e8f0fb", overflow: "hidden" }}>
+                      {card.imageSrc
+                        ? <img src={card.imageSrc} alt={card.name}
+                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                            onError={(e) => { e.target.style.display = "none"; }} />
+                        : <div style={{ width: "100%", height: "100%", display: "flex",
+                            alignItems: "center", justifyContent: "center", fontSize: 10, color: "#bbb" }}>No image</div>
+                      }
+                    </div>
+                    <div style={{ padding: "8px 10px" }}>
+                      <div style={{ fontWeight: 800, fontSize: 11, marginBottom: 2 }}>{card.name}</div>
+                      {card.time && <div style={{ fontSize: 10, color: "#F47920", fontWeight: 700, marginBottom: 2 }}>{card.time}</div>}
+                      <div style={{ fontSize: 10, color: "#666", marginBottom: 6, lineHeight: 1.4 }}>{card.desc}</div>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                        <span style={{ fontSize: 9, color: "#999", fontWeight: 700 }}>{card.branch}</span>
+                        <span style={{ fontSize: 9, fontWeight: 800, color: "#fff", borderRadius: 6, padding: "3px 8px",
+                          background: card.btnColor === "orange" ? "#F47920" : card.btnColor === "blue" ? "#1A5FA8" : "#F7C416" }}>
+                          {card.btnLabel}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Promotions */}
+              <div style={{ fontWeight: 800, fontSize: 13, color: "#1a3a6b", marginBottom: 10 }}>Current Promotions</div>
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                {(data.events.promotions || []).map((card, i) => (
+                  <div key={i} style={{ flex: "1 1 140px", background: "#fff", borderRadius: 12,
+                    border: "1.5px solid #e0eaf5", overflow: "hidden", minWidth: 130 }}>
+                    <div style={{ height: 70, background: "#e8f0fb", overflow: "hidden" }}>
+                      {card.imageSrc
+                        ? <img src={card.imageSrc} alt={card.name}
+                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                            onError={(e) => { e.target.style.display = "none"; }} />
+                        : <div style={{ width: "100%", height: "100%", display: "flex",
+                            alignItems: "center", justifyContent: "center", fontSize: 10, color: "#bbb" }}>No image</div>
+                      }
+                    </div>
+                    <div style={{ padding: "8px 10px" }}>
+                      <div style={{ fontWeight: 800, fontSize: 11, marginBottom: 2 }}>{card.name}</div>
+                      <div style={{ fontSize: 10, color: "#666", marginBottom: 6, lineHeight: 1.4 }}>{card.desc}</div>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                        <span style={{ fontSize: 9, color: "#999", fontWeight: 700 }}>{card.branch}</span>
+                        <span style={{ fontSize: 9, fontWeight: 800, color: "#fff", borderRadius: 6, padding: "3px 8px",
+                          background: card.btnColor === "orange" ? "#F47920" : card.btnColor === "blue" ? "#1A5FA8" : "#F7C416" }}>
+                          {card.btnLabel}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* MISSION BANNER */}
       {data.missionBanner && (
         <div style={{ background: "#1a4a8a", padding: "28px 28px", textAlign: "center" }}>
@@ -1362,6 +1862,104 @@ ${(c.listItems || []).map((li) => `                <li>${li}</li>`).join("\n")}
     <p class="mission-attr">${mbData.attr}</p>
 </div>`;
 
+  const evData = data.events || defaultData.events;
+  const eventsHtml = `
+<!-- EVENTS & PROMOTIONS SECTION -->
+<section class="events-section">
+
+    <div class="offers-ticker-wrap">
+        <div class="offers-badge">OFFERS</div>
+        <div class="offers-ticker">
+            <div class="offers-track">
+${(evData.offersTicker || []).flatMap((t) => [
+  `                <span>${t}</span>`,
+  `                <span class="dot">•</span>`,
+]).join("\n")}
+            </div>
+        </div>
+    </div>
+
+    <div class="events-inner">
+
+        <aside class="events-sidebar">
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">Opening Hours</h3>
+                <div class="hours-table">
+${(evData.openingHours || []).map((row) =>
+`                    <div class="hours-row">
+                        <span class="hours-day">${row.day}</span>
+                        <span class="hours-time${row.muted ? ' muted' : ''}">${row.time}</span>
+                    </div>`).join("\n")}
+                </div>
+                <p class="sidebar-note">${evData.openingHoursNote || ""}</p>
+            </div>
+
+            <div class="sidebar-card sidebar-card-yellow">
+                <h3 class="sidebar-title">Good to Know</h3>
+                <div class="know-table">
+${(evData.goodToKnow || []).map((row) =>
+`                    <div class="know-row">
+                        <span class="know-key">${row.key}</span>
+                        <span class="know-val${row.red ? ' red-val' : ''}">${row.val}</span>
+                    </div>`).join("\n")}
+                </div>
+                <p class="sidebar-note">${evData.goodToKnowNote || ""}</p>
+            </div>
+        </aside>
+
+        <div class="events-content">
+            <div class="events-header">
+                <h2 class="events-title">🎉 Events &amp; Promotions</h2>
+                <p class="events-sub">Special deals, seasonal celebrations &amp; exciting events for your little ones</p>
+            </div>
+
+            <div class="events-block">
+                <div class="block-header">
+                    <h3 class="block-title">Upcoming Events</h3>
+                    <a href="#" class="see-all-link">→</a>
+                </div>
+                <div class="event-cards-grid">
+${(evData.upcomingEvents || []).map((card) =>
+`                    <div class="event-card">
+                        <div class="event-img-wrap"><img src="${card.imageSrc}" alt="${card.name}" class="event-img"></div>
+                        <div class="event-body">
+                            <h4 class="event-name">${card.name}</h4>
+                            ${card.time ? `<p class="event-time">${card.time}</p>` : ""}
+                            <p class="event-desc">${card.desc}</p>
+                            <div class="event-footer">
+                                <span class="event-branch">${card.branch}</span>
+                                <button class="event-btn btn-${card.btnColor}">${card.btnLabel}</button>
+                            </div>
+                        </div>
+                    </div>`).join("\n")}
+                </div>
+            </div>
+
+            <div class="events-block">
+                <div class="block-header">
+                    <h3 class="block-title">Current promotions</h3>
+                </div>
+                <div class="event-cards-grid">
+${(evData.promotions || []).map((card) =>
+`                    <div class="event-card">
+                        <div class="event-img-wrap"><img src="${card.imageSrc}" alt="${card.name}" class="event-img"></div>
+                        <div class="event-body">
+                            <h4 class="event-name">${card.name}</h4>
+                            ${card.time ? `<p class="event-time">${card.time}</p>` : ""}
+                            <p class="event-desc">${card.desc}</p>
+                            <div class="event-footer">
+                                <span class="event-branch">${card.branch}</span>
+                                <button class="event-btn btn-${card.btnColor}">${card.btnLabel}</button>
+                            </div>
+                        </div>
+                    </div>`).join("\n")}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>`;
+
   const code = `<!-- TOP BANNER -->
 <div class="top-banner">
     ${data.topBanner.emoji} ${data.topBanner.text}
@@ -1400,7 +1998,8 @@ ${hero2Html}
 ${ageBannerHtml}
 ${facilitiesHtml}
 ${whoWeAreHtml}
-${missionHtml}`;
+${missionHtml}
+${eventsHtml}`;
 
   return (
     <div style={{ position: "relative" }}>
@@ -1501,6 +2100,7 @@ Reply ONLY with a valid JSON object matching the same structure. No explanation,
       case "whoWeAre":      return <WhoWeAreEditor      data={data.whoWeAre      || defaultData.whoWeAre}          onChange={(v) => updateSection("whoWeAre", v)} />;
       case "missionBanner": return <MissionBannerEditor data={data.missionBanner || defaultData.missionBanner}     onChange={(v) => updateSection("missionBanner", v)} />;
       case "footer":        return <FooterEditor        data={data.footer}                                         onChange={(v) => updateSection("footer", v)} />;
+      case "events":        return <EventsEditor        data={data.events || defaultData.events}                   onChange={(v) => updateSection("events", v)} />;
       default: return null;
     }
   };
