@@ -64,6 +64,62 @@ const defaultData = {
       phone2: "077 360 3777",
     },
   ],
+  hero2: {
+    eyebrow: "Sri Lanka's First & Finest",
+    titleLine1: "The Ultimate",
+    accentKids: "Kids",
+    accentBlue: " Venue!",
+    desc: "Premium indoor playground for children aged 0–11. A world of safe exploration at Nawala & Mount Lavinia.",
+    badges: [
+      { icon: "❄️", label: "Air-Conditioned" },
+      { icon: "👀", label: "Fully Supervised" },
+      { icon: "✨", label: "Always Clean" },
+    ],
+    mascotImage: "images/e23c90ee4a9a6b0f4e35418229891932-removebg-preview.png",
+  },
+  ageBanner: {
+    heading: "Perfect for Kids Aged 0–11",
+    desc: "From tiny toddlers to adventurous pre-teens — we have dedicated zones built just for them.",
+    badgeNum: "0–11",
+    badgeLabel: "Years Old",
+  },
+  whoWeAre: {
+    eyebrow: "Who We Are",
+    heading: "A Place Built For Kids",
+    cards: [
+      {
+        icon: "⭐",
+        color: "yellow",
+        title: "More Than a Playground",
+        desc: "Fun Factory is a one-of-a-kind space where children learn to build a healthy and active physical and mental development. We've got soft play, ball pits, go-karts, and so much more — connection and fun are waiting at every corner!",
+        listItems: [
+          "Soft play zones for all ages",
+          "Go-karts & adventure tracks",
+          "Creative art & craft areas",
+          "Birthday party packages",
+        ],
+      },
+      {
+        icon: "🛡️",
+        color: "blue",
+        title: "Safe. Clean. Exciting.",
+        desc: "Our fantastic facilities and friendly staff attract families from all over Colombo. We sanitise every inch of our venue daily — and for parents to relax, you can rest easy knowing your little ones are in the safest hands.",
+        listItems: [
+          "Trained supervisors always present",
+          "Deep cleaned every day",
+          "Fully air conditioned spaces",
+          "Safe, padded equipment",
+        ],
+      },
+    ],
+  },
+  missionBanner: {
+    quote: "To be the first choice of parents when selecting a safe, clean, secure and exciting facility for children to play in a stimulating environment.",
+    hlSafe: "safe,",
+    hlClean: "clean,",
+    hlSecure: "secure",
+    attr: "— Fun Factory Mission Statement",
+  },
   facilities: {
     cards: [
       { icon: "🌴", title: "Jungle Gym",          desc: "Sri Lanka's largest indoor jungle gym. Slides, climbing walls & adventure zones!", color: "fac-blue"   },
@@ -83,11 +139,15 @@ const SECTIONS = [
   { key: "topBanner", label: "Top Banner",    icon: "📢" },
   { key: "navbar",    label: "Navigation",    icon: "🧭" },
   { key: "hero",      label: "Hero Section",  icon: "🌟" },
+  { key: "hero2",     label: "Hero 2",        icon: "🧒" },
+  { key: "ageBanner", label: "Age Banner",    icon: "🎈" },
   { key: "stats",     label: "Stats Bar",     icon: "📊" },
   { key: "features",  label: "Features Strip",icon: "✨" },
   { key: "locations",  label: "Locations",      icon: "📍" },
-  { key: "facilities", label: "Facilities",     icon: "🏟️" },
-  { key: "footer",     label: "Footer",         icon: "📄" },
+  { key: "facilities",   label: "Facilities",       icon: "🏟️" },
+  { key: "whoWeAre",    label: "Who We Are",       icon: "🏫" },
+  { key: "missionBanner", label: "Mission Banner", icon: "💬" },
+  { key: "footer",      label: "Footer",           icon: "📄" },
 ];
 
 const MAX_SLIDER_IMAGES = 6;
@@ -580,6 +640,215 @@ function FooterEditor({ data, onChange }) {
   );
 }
 
+// ════ HERO 2 EDITOR ════
+
+function Hero2Editor({ data, onChange }) {
+  const set = (k) => (v) => onChange({ ...data, [k]: v });
+
+  const setBadge = (i, field, val) => {
+    const next = [...data.badges];
+    next[i] = { ...next[i], [field]: val };
+    onChange({ ...data, badges: next });
+  };
+  const addBadge    = () => onChange({ ...data, badges: [...data.badges, { icon: "⭐", label: "New Badge" }] });
+  const removeBadge = (i) => onChange({ ...data, badges: data.badges.filter((_, idx) => idx !== i) });
+
+  return (
+    <div>
+      <SectionCard title="Hero 2 — Text">
+        <Field label="Eyebrow Text"  value={data.eyebrow}    onChange={set("eyebrow")}    hint="Small uppercase label above the title" />
+        <Field label="Title Line 1"  value={data.titleLine1} onChange={set("titleLine1")} />
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 14 }}>
+          <div>
+            <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Accent Word (Red)</label>
+            <input value={data.accentKids} onChange={(e) => set("accentKids")(e.target.value)}
+              style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8, padding: "7px 10px",
+                fontSize: 13, outline: "none", background: "#fff", color: "#E63329", fontWeight: 800,
+                boxSizing: "border-box", marginTop: 4 }} />
+          </div>
+          <div>
+            <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Accent Word (Blue)</label>
+            <input value={data.accentBlue} onChange={(e) => set("accentBlue")(e.target.value)}
+              style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8, padding: "7px 10px",
+                fontSize: 13, outline: "none", background: "#fff", color: "#1A5FA8", fontWeight: 800,
+                boxSizing: "border-box", marginTop: 4 }} />
+          </div>
+        </div>
+        <Field label="Description" value={data.desc} onChange={set("desc")} multiline />
+      </SectionCard>
+
+      <SectionCard title="Badges">
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          {data.badges.map((b, i) => (
+            <div key={i} style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <input value={b.icon} onChange={(e) => setBadge(i, "icon", e.target.value)}
+                style={{ width: 52, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                  padding: "7px 6px", fontSize: 20, textAlign: "center", outline: "none", background: "#fff" }} />
+              <input value={b.label} onChange={(e) => setBadge(i, "label", e.target.value)}
+                placeholder="Badge label"
+                style={{ flex: 1, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                  padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff", color: "#222" }} />
+              <button onClick={() => removeBadge(i)}
+                style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+                  borderRadius: 8, padding: "7px 12px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>✕</button>
+            </div>
+          ))}
+        </div>
+        <button onClick={addBadge}
+          style={{ marginTop: 10, background: "#e0edff", color: "#1a5fa8", border: "none",
+            borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+          + Add Badge
+        </button>
+      </SectionCard>
+
+      <SectionCard title="Mascot Image (Right Side)">
+        <ImageUploadBlock
+          label="Hero 2 Mascot Image"
+          imageSrc={data.mascotImage}
+          uploadEndpoint="/api/cms/upload-stats-image"
+          fieldName="stats_image"
+          onChange={(path) => onChange({ ...data, mascotImage: path })}
+        />
+      </SectionCard>
+    </div>
+  );
+}
+
+// ════ AGE BANNER EDITOR ════
+
+function AgeBannerEditor({ data, onChange }) {
+  const set = (k) => (v) => onChange({ ...data, [k]: v });
+  return (
+    <SectionCard title="Age Banner">
+      <Field label="Heading"      value={data.heading}     onChange={set("heading")} />
+      <Field label="Description"  value={data.desc}        onChange={set("desc")} multiline />
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+        <Field label="Badge Number (e.g. 0–11)" value={data.badgeNum}   onChange={set("badgeNum")} />
+        <Field label="Badge Label (e.g. Years Old)" value={data.badgeLabel} onChange={set("badgeLabel")} />
+      </div>
+    </SectionCard>
+  );
+}
+
+// ════ WHO WE ARE EDITOR ════
+
+function WhoWeAreEditor({ data, onChange }) {
+  const set = (k) => (v) => onChange({ ...data, [k]: v });
+
+  const setCard = (ci, field, val) => {
+    const next = data.cards.map((c, i) => i === ci ? { ...c, [field]: val } : c);
+    onChange({ ...data, cards: next });
+  };
+
+  const setListItem = (ci, li, val) => {
+    const items = [...data.cards[ci].listItems];
+    items[li] = val;
+    setCard(ci, "listItems", items);
+  };
+
+  const addListItem    = (ci) => setCard(ci, "listItems", [...data.cards[ci].listItems, "New item"]);
+  const removeListItem = (ci, li) => setCard(ci, "listItems", data.cards[ci].listItems.filter((_, i) => i !== li));
+
+  const WWA_COLORS = [
+    { value: "yellow", label: "Yellow" },
+    { value: "blue",   label: "Blue"   },
+  ];
+
+  return (
+    <div>
+      <SectionCard title="Section Header">
+        <Field label="Eyebrow" value={data.eyebrow} onChange={set("eyebrow")} hint="Small label above heading (e.g. 'Who We Are')" />
+        <Field label="Heading" value={data.heading}  onChange={set("heading")} />
+      </SectionCard>
+
+      {data.cards.map((card, ci) => (
+        <SectionCard key={ci} title={`Card ${ci + 1} — ${card.title}`}>
+          <div style={{ display: "grid", gridTemplateColumns: "60px 1fr 120px", gap: 10, marginBottom: 12 }}>
+            <div>
+              <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Icon</label>
+              <input value={card.icon} onChange={(e) => setCard(ci, "icon", e.target.value)}
+                style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                  padding: "7px 6px", fontSize: 20, textAlign: "center", outline: "none",
+                  background: "#fff", boxSizing: "border-box", marginTop: 4 }} />
+            </div>
+            <div>
+              <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Card Title</label>
+              <input value={card.title} onChange={(e) => setCard(ci, "title", e.target.value)}
+                style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                  padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+                  color: "#222", boxSizing: "border-box", marginTop: 4 }} />
+            </div>
+            <div>
+              <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Color</label>
+              <select value={card.color} onChange={(e) => setCard(ci, "color", e.target.value)}
+                style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                  padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+                  color: "#222", boxSizing: "border-box", marginTop: 4, cursor: "pointer" }}>
+                {WWA_COLORS.map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}
+              </select>
+            </div>
+          </div>
+
+          <div style={{ marginBottom: 12 }}>
+            <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Description</label>
+            <textarea value={card.desc} onChange={(e) => setCard(ci, "desc", e.target.value)} rows={3}
+              style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+                color: "#222", boxSizing: "border-box", marginTop: 4, resize: "vertical", fontFamily: "inherit" }} />
+          </div>
+
+          <div>
+            <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase",
+              display: "block", marginBottom: 8 }}>List Items</label>
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              {card.listItems.map((item, li) => (
+                <div key={li} style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                  <input value={item} onChange={(e) => setListItem(ci, li, e.target.value)}
+                    style={{ flex: 1, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                      padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff", color: "#222" }} />
+                  <button onClick={() => removeListItem(ci, li)}
+                    style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+                      borderRadius: 8, padding: "7px 10px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>✕</button>
+                </div>
+              ))}
+            </div>
+            <button onClick={() => addListItem(ci)}
+              style={{ marginTop: 8, background: "#e0edff", color: "#1a5fa8", border: "none",
+                borderRadius: 8, padding: "7px 14px", cursor: "pointer", fontSize: 12, fontWeight: 700 }}>
+              + Add Item
+            </button>
+          </div>
+        </SectionCard>
+      ))}
+    </div>
+  );
+}
+
+// ════ MISSION BANNER EDITOR ════
+
+function MissionBannerEditor({ data, onChange }) {
+  const set = (k) => (v) => onChange({ ...data, [k]: v });
+  return (
+    <SectionCard title="Mission Statement Banner">
+      <Field label="Full Quote Text" value={data.quote} onChange={set("quote")} multiline
+        hint="Write the full quote. The highlighted words below will be auto-replaced with coloured spans." />
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10 }}>
+        <Field label="Highlight: Safe (Yellow)" value={data.hlSafe}   onChange={set("hlSafe")} />
+        <Field label="Highlight: Clean (Green)" value={data.hlClean}  onChange={set("hlClean")} />
+        <Field label="Highlight: Secure (Blue)" value={data.hlSecure} onChange={set("hlSecure")} />
+      </div>
+      <Field label="Attribution" value={data.attr} onChange={set("attr")} hint="e.g. — Fun Factory Mission Statement" />
+      <div style={{ marginTop: 12, background: "#1a3a6b", borderRadius: 12, padding: "16px 20px",
+        color: "#fff", fontSize: 12, lineHeight: 1.8, textAlign: "center" }}>
+        <em>
+          "{data.quote.replace(data.hlSafe, `<mark style="background:none;color:#F7C416">${data.hlSafe}</mark>`)}"
+        </em>
+        <div style={{ marginTop: 8, fontSize: 10, opacity: 0.5, letterSpacing: 2, textTransform: "uppercase" }}>{data.attr}</div>
+      </div>
+    </SectionCard>
+  );
+}
+
 // ════ FACILITIES EDITOR ════
 
 const FAC_COLORS = [
@@ -769,12 +1038,69 @@ function LivePreview({ data }) {
             <span style={{ color: "#1A5FA8", fontWeight: 800, fontSize: 12, padding: "8px 0" }}>{data.hero.cta2}</span>
           </div>
         </div>
-
-        {/* Slider preview */}
-        {sliderImages.length > 0 && (
-          <SliderPreview images={sliderImages} />
-        )}
+        {sliderImages.length > 0 && <SliderPreview images={sliderImages} />}
       </div>
+
+      {/* HERO 2 */}
+      {data.hero2 && (
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32,
+          padding: "32px 28px", background: "rgba(255,255,255,0.6)", alignItems: "center" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: 2,
+              textTransform: "uppercase", color: "#E63329" }}>{data.hero2.eyebrow}</div>
+            <div style={{ fontFamily: "serif", fontSize: 28, lineHeight: 1.1, color: "#1a1a2e" }}>
+              {data.hero2.titleLine1}<br />
+              <span style={{ color: "#E63329" }}>{data.hero2.accentKids}</span>
+              <span style={{ color: "#1A5FA8" }}>{data.hero2.accentBlue}</span>
+            </div>
+            <div style={{ fontSize: 13, color: "#555", lineHeight: 1.7 }}>{data.hero2.desc}</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {(data.hero2.badges || []).map((b, i) => (
+                <div key={i} style={{ display: "inline-flex", alignItems: "center", gap: 8,
+                  border: "2px solid #dde", borderRadius: 50, padding: "7px 16px",
+                  fontSize: 12, fontWeight: 700, background: "rgba(255,255,255,0.8)",
+                  width: "fit-content", color: "#333" }}>
+                  <span>{b.icon}</span>{b.label}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            {data.hero2.mascotImage
+              ? <img src={data.hero2.mascotImage} alt="Mascot"
+                  style={{ maxHeight: 200, width: "auto", objectFit: "contain" }}
+                  onError={(e) => { e.target.style.display = "none"; }} />
+              : <div style={{ width: 160, height: 160, background: "#f0f0f0",
+                  borderRadius: 12, display: "flex", alignItems: "center",
+                  justifyContent: "center", fontSize: 11, color: "#aaa" }}>No image</div>
+            }
+          </div>
+        </div>
+      )}
+
+      {/* AGE BANNER */}
+      {data.ageBanner && (
+        <div style={{ margin: "0 16px 16px", background: "linear-gradient(135deg,#fff9c4,#ffe082)",
+          borderRadius: 20, padding: "28px 32px", display: "flex", alignItems: "center",
+          justifyContent: "space-between", gap: 20, border: "2px solid #fdd835", flexWrap: "wrap" }}>
+          <div>
+            <div style={{ fontFamily: "serif", fontSize: 22, fontWeight: 900,
+              color: "#1a1a2e", marginBottom: 6 }}>{data.ageBanner.heading}</div>
+            <div style={{ fontSize: 12, color: "#555", fontWeight: 600, maxWidth: 320 }}>
+              {data.ageBanner.desc}
+            </div>
+          </div>
+          <div style={{ background: "#fff", border: "3px solid #F7C416", borderRadius: 16,
+            padding: "14px 28px", textAlign: "center",
+            boxShadow: "0 6px 20px rgba(247,196,22,0.3)", flexShrink: 0 }}>
+            <div style={{ fontFamily: "serif", fontSize: 36, lineHeight: 1,
+              color: "#1A5FA8", fontWeight: 900 }}>{data.ageBanner.badgeNum}</div>
+            <div style={{ fontSize: 12, fontWeight: 800, color: "#555", marginTop: 4 }}>
+              {data.ageBanner.badgeLabel}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* STATS */}
       <div style={{ display: "flex", gap: 20, padding: "16px 24px", background: "#fff",
@@ -812,36 +1138,21 @@ function LivePreview({ data }) {
       {data.facilities && (
         <div style={{ background: "rgba(255,255,255,0.7)", padding: "20px 24px" }}>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-            {/* Left + Right card columns */}
             <div style={{ display: "flex", gap: 14, flex: 2, flexWrap: "wrap" }}>
-              {/* Col 1: cards 0 and 1 */}
               <div style={{ display: "flex", flexDirection: "column", gap: 14, flex: 1, minWidth: 140 }}>
                 {(data.facilities.cards || []).filter((_, i) => i % 2 === 0).map((card, i) => (
-                  <div key={i} style={{
-                    borderRadius: 16, padding: "14px 16px",
-                    background:
-                      card.color === "fac-blue"   ? "#b2e0f7" :
-                      card.color === "fac-pink"   ? "#f7cfe4" :
-                      card.color === "fac-yellow" ? "#fde68a" :
-                      card.color === "fac-navy"   ? "#3b4f7c" : "#e0e0e0",
-                  }}>
+                  <div key={i} style={{ borderRadius: 16, padding: "14px 16px",
+                    background: card.color === "fac-blue" ? "#b2e0f7" : card.color === "fac-pink" ? "#f7cfe4" : card.color === "fac-yellow" ? "#fde68a" : card.color === "fac-navy" ? "#3b4f7c" : "#e0e0e0" }}>
                     <div style={{ fontSize: 20, marginBottom: 4 }}>{card.icon}</div>
                     <div style={{ fontWeight: 800, fontSize: 13, color: card.color === "fac-navy" ? "#fff" : "#1a1a2e", marginBottom: 4 }}>{card.title}</div>
                     <div style={{ fontSize: 11, color: card.color === "fac-navy" ? "rgba(255,255,255,0.8)" : "#555" }}>{card.desc}</div>
                   </div>
                 ))}
               </div>
-              {/* Col 2: cards 1 and 3 */}
               <div style={{ display: "flex", flexDirection: "column", gap: 14, flex: 1, minWidth: 140 }}>
                 {(data.facilities.cards || []).filter((_, i) => i % 2 === 1).map((card, i) => (
-                  <div key={i} style={{
-                    borderRadius: 16, padding: "14px 16px",
-                    background:
-                      card.color === "fac-blue"   ? "#b2e0f7" :
-                      card.color === "fac-pink"   ? "#f7cfe4" :
-                      card.color === "fac-yellow" ? "#fde68a" :
-                      card.color === "fac-navy"   ? "#3b4f7c" : "#e0e0e0",
-                  }}>
+                  <div key={i} style={{ borderRadius: 16, padding: "14px 16px",
+                    background: card.color === "fac-blue" ? "#b2e0f7" : card.color === "fac-pink" ? "#f7cfe4" : card.color === "fac-yellow" ? "#fde68a" : card.color === "fac-navy" ? "#3b4f7c" : "#e0e0e0" }}>
                     <div style={{ fontSize: 20, marginBottom: 4 }}>{card.icon}</div>
                     <div style={{ fontWeight: 800, fontSize: 13, color: card.color === "fac-navy" ? "#fff" : "#1a1a2e", marginBottom: 4 }}>{card.title}</div>
                     <div style={{ fontSize: 11, color: card.color === "fac-navy" ? "rgba(255,255,255,0.8)" : "#555" }}>{card.desc}</div>
@@ -849,7 +1160,6 @@ function LivePreview({ data }) {
                 ))}
               </div>
             </div>
-            {/* Mascot image */}
             {data.facilities.mascotImage && (
               <div style={{ flex: 1, minWidth: 100, display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <img src={data.facilities.mascotImage} alt="Mascot"
@@ -858,6 +1168,43 @@ function LivePreview({ data }) {
               </div>
             )}
           </div>
+        </div>
+      )}
+
+      {/* WHO WE ARE */}
+      {data.whoWeAre && (
+        <div style={{ padding: "24px 24px 16px", background: "#fff" }}>
+          <div style={{ fontSize: 11, fontWeight: 800, color: "#E63329",
+            textTransform: "uppercase", letterSpacing: 2, marginBottom: 6 }}>{data.whoWeAre.eyebrow}</div>
+          <div style={{ fontFamily: "serif", fontSize: 22, fontWeight: 900,
+            color: "#1a1a2e", marginBottom: 14 }}>{data.whoWeAre.heading}</div>
+          <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+            {(data.whoWeAre.cards || []).map((card, i) => (
+              <div key={i} style={{ flex: 1, minWidth: 180, borderRadius: 16, padding: "16px 18px",
+                background: card.color === "yellow" ? "#fffde7" : "#e3f2fd",
+                border: `2px solid ${card.color === "yellow" ? "#fdd835" : "#90caf9"}` }}>
+                <div style={{ fontSize: 22, marginBottom: 8 }}>{card.icon}</div>
+                <div style={{ fontWeight: 800, fontSize: 14, color: "#1a1a2e", marginBottom: 6 }}>{card.title}</div>
+                <div style={{ fontSize: 11, color: "#555", lineHeight: 1.6, marginBottom: 8 }}>{card.desc}</div>
+                <ul style={{ paddingLeft: 16, margin: 0 }}>
+                  {(card.listItems || []).map((item, j) => (
+                    <li key={j} style={{ fontSize: 11, color: "#444", fontWeight: 600, marginBottom: 3 }}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* MISSION BANNER */}
+      {data.missionBanner && (
+        <div style={{ background: "#1a4a8a", padding: "28px 28px", textAlign: "center" }}>
+          <div style={{ fontSize: 13, color: "#fff", lineHeight: 1.8, fontWeight: 700, maxWidth: 600, margin: "0 auto" }}>
+            "{data.missionBanner.quote}"
+          </div>
+          <div style={{ marginTop: 10, fontSize: 10, color: "rgba(255,255,255,0.5)",
+            letterSpacing: 2, textTransform: "uppercase" }}>{data.missionBanner.attr}</div>
         </div>
       )}
 
@@ -915,6 +1262,47 @@ function CodeOutput({ data }) {
     (statsImgSrc ? `\n    <img class="img-ss" src="${statsImgSrc}" alt="Fun Factory">` : "") +
     `\n</div>`;
 
+  const hero2Data   = data.hero2   || defaultData.hero2;
+  const ageBannerData = data.ageBanner || defaultData.ageBanner;
+
+  const hero2Html = `
+<!-- HERO 2 -->
+<section class="hero2">
+    <div class="hero2-left">
+        <p class="eyebrow">${hero2Data.eyebrow}</p>
+        <h1 class="hero2-title">
+            ${hero2Data.titleLine1}<br>
+            <span class="accent-kids">${hero2Data.accentKids}</span>
+            <span class="accent-blue">${hero2Data.accentBlue}</span>
+        </h1>
+        <p class="hero2-desc">${hero2Data.desc}</p>
+        <div class="badges">
+${(hero2Data.badges || []).map((b) => `            <div class="badge"><span class="badge-icon">${b.icon}</span> ${b.label}</div>`).join("\n")}
+        </div>
+    </div>
+    <div class="hero2-right">
+        <div class="mascot-wrap">
+            <div class="mascot-glow"></div>
+            <div class="splash s1"></div><div class="splash s2"></div>
+            <div class="splash s3"></div><div class="splash s4"></div>
+            <img class="mascot-img" src="${hero2Data.mascotImage}" alt="Fun Factory Mascot">
+        </div>
+    </div>
+</section>`;
+
+  const ageBannerHtml = `
+<!-- AGE BANNER -->
+<div class="age-banner">
+    <div class="age-left">
+        <h2>${ageBannerData.heading}</h2>
+        <p>${ageBannerData.desc}</p>
+    </div>
+    <div class="age-badge">
+        <div class="num">${ageBannerData.badgeNum}</div>
+        <div class="label">${ageBannerData.badgeLabel}</div>
+    </div>
+</div>`;
+
   const facilitiesData = data.facilities || { cards: [], mascotImage: "" };
   const facilitiesHtml = facilitiesData.cards.length > 0
     ? `\n<!-- FACILITIES -->\n<section class="section" style="background:rgba(255,255,255,0.7);" id="Facilities">\n    <div class="facilities-grid">\n` +
@@ -936,6 +1324,43 @@ function CodeOutput({ data }) {
         : "") +
       `    </div>\n</section>`
     : "";
+
+  const wwaData = data.whoWeAre || defaultData.whoWeAre;
+  const whoWeAreHtml = `
+<!-- WHO WE ARE -->
+<section class="who-we-are">
+    <p class="wwa-eyebrow">${wwaData.eyebrow}</p>
+    <h2 class="wwa-heading">${wwaData.heading}</h2>
+    <div class="wwa-cards">
+${(wwaData.cards || []).map((c) =>
+`        <div class="wwa-card wwa-card-${c.color}">
+            <div class="wwa-card-icon icon-${c.color}">${c.icon}</div>
+            <h3 class="wwa-card-title">${c.title}</h3>
+            <p class="wwa-card-desc">${c.desc}</p>
+            <ul class="wwa-list">
+${(c.listItems || []).map((li) => `                <li>${li}</li>`).join("\n")}
+            </ul>
+        </div>`).join("\n")}
+    </div>
+</section>`;
+
+  const mbData = data.missionBanner || defaultData.missionBanner;
+  // Build quote with highlights
+  const buildQuote = (mb) => {
+    let q = mb.quote;
+    if (mb.hlSafe)   q = q.replace(mb.hlSafe,   `<span class="hl-safe">${mb.hlSafe}</span>`);
+    if (mb.hlClean)  q = q.replace(mb.hlClean,  `<span class="hl-clean">${mb.hlClean}</span>`);
+    if (mb.hlSecure) q = q.replace(mb.hlSecure, `<span class="hl-secure">${mb.hlSecure}</span>`);
+    return q;
+  };
+  const missionHtml = `
+<!-- MISSION STATEMENT BANNER -->
+<div class="mission-banner">
+    <p class="mission-quote">
+        "${buildQuote(mbData)}"
+    </p>
+    <p class="mission-attr">${mbData.attr}</p>
+</div>`;
 
   const code = `<!-- TOP BANNER -->
 <div class="top-banner">
@@ -971,7 +1396,11 @@ ${data.navbar.links.map((l) => `        <li><a href="${l.href}">${l.label}</a></
 </div>
 ${sliderHtml}
 ${statsHtml}
-${facilitiesHtml}`;
+${hero2Html}
+${ageBannerHtml}
+${facilitiesHtml}
+${whoWeAreHtml}
+${missionHtml}`;
 
   return (
     <div style={{ position: "relative" }}>
@@ -1063,11 +1492,15 @@ Reply ONLY with a valid JSON object matching the same structure. No explanation,
       case "topBanner": return <TopBannerEditor data={data.topBanner} onChange={(v) => updateSection("topBanner", v)} />;
       case "navbar":    return <NavbarEditor    data={data.navbar}    onChange={(v) => updateSection("navbar", v)} />;
       case "hero":      return <HeroEditor      data={data.hero}      onChange={(v) => updateSection("hero", v)} />;
+      case "hero2":     return <Hero2Editor     data={data.hero2 || defaultData.hero2} onChange={(v) => updateSection("hero2", v)} />;
+      case "ageBanner": return <AgeBannerEditor data={data.ageBanner || defaultData.ageBanner} onChange={(v) => updateSection("ageBanner", v)} />;
       case "stats":     return <StatsEditor     data={data.stats}     onChange={(v) => updateSection("stats", v)} />;
       case "features":   return <FeaturesEditor   data={data.features}   onChange={(v) => updateSection("features", v)} />;
       case "locations":  return <LocationsEditor  data={data.locations}  onChange={(v) => updateSection("locations", v)} />;
-      case "facilities": return <FacilitiesEditor data={data.facilities || { cards: [], mascotImage: "" }} onChange={(v) => updateSection("facilities", v)} />;
-      case "footer":     return <FooterEditor     data={data.footer}     onChange={(v) => updateSection("footer", v)} />;
+      case "facilities":    return <FacilitiesEditor    data={data.facilities    || { cards: [], mascotImage: "" }} onChange={(v) => updateSection("facilities", v)} />;
+      case "whoWeAre":      return <WhoWeAreEditor      data={data.whoWeAre      || defaultData.whoWeAre}          onChange={(v) => updateSection("whoWeAre", v)} />;
+      case "missionBanner": return <MissionBannerEditor data={data.missionBanner || defaultData.missionBanner}     onChange={(v) => updateSection("missionBanner", v)} />;
+      case "footer":        return <FooterEditor        data={data.footer}                                         onChange={(v) => updateSection("footer", v)} />;
       default: return null;
     }
   };
