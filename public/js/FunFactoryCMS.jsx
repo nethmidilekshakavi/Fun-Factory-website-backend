@@ -64,6 +64,15 @@ const defaultData = {
       phone2: "077 360 3777",
     },
   ],
+  facilities: {
+    cards: [
+      { icon: "🌴", title: "Jungle Gym",          desc: "Sri Lanka's largest indoor jungle gym. Slides, climbing walls & adventure zones!", color: "fac-blue"   },
+      { icon: "📚", title: "Library & Activity",   desc: "Reading corners, arts & crafts, learning stations",                              color: "fac-pink"   },
+      { icon: "👶", title: "Toddlers & Infants",   desc: "Safe, dedicated soft-play area for tiny adventurers",                           color: "fac-yellow" },
+      { icon: "☕", title: "Café",                  desc: "Delicious food & beverages while kids play",                                    color: "fac-navy"   },
+    ],
+    mascotImage: "images/25d9c599743e1b42f78bef12965dd34f-removebg-preview.png",
+  },
   footer: {
     copyright: "© 2025 Fun Factory — All Rights Reserved.",
     tagline: "Made for kids, by people who love them",
@@ -76,8 +85,9 @@ const SECTIONS = [
   { key: "hero",      label: "Hero Section",  icon: "🌟" },
   { key: "stats",     label: "Stats Bar",     icon: "📊" },
   { key: "features",  label: "Features Strip",icon: "✨" },
-  { key: "locations", label: "Locations",     icon: "📍" },
-  { key: "footer",    label: "Footer",        icon: "📄" },
+  { key: "locations",  label: "Locations",      icon: "📍" },
+  { key: "facilities", label: "Facilities",     icon: "🏟️" },
+  { key: "footer",     label: "Footer",         icon: "📄" },
 ];
 
 const MAX_SLIDER_IMAGES = 6;
@@ -570,6 +580,133 @@ function FooterEditor({ data, onChange }) {
   );
 }
 
+// ════ FACILITIES EDITOR ════
+
+const FAC_COLORS = [
+  { value: "fac-blue",   label: "Blue"   },
+  { value: "fac-pink",   label: "Pink"   },
+  { value: "fac-yellow", label: "Yellow" },
+  { value: "fac-navy",   label: "Navy"   },
+];
+
+function FacilitiesEditor({ data, onChange }) {
+  const cards     = data.cards || [];
+  const mascotImage = data.mascotImage || "";
+
+  const setCard = (i, field, val) => {
+    const next = [...cards];
+    next[i] = { ...next[i], [field]: val };
+    onChange({ ...data, cards: next });
+  };
+
+  const addCard = () => {
+    onChange({
+      ...data,
+      cards: [...cards, { icon: "🎯", title: "New Facility", desc: "Description here", color: "fac-blue" }],
+    });
+  };
+
+  const removeCard = (i) => {
+    onChange({ ...data, cards: cards.filter((_, idx) => idx !== i) });
+  };
+
+  const uploadMascot = async (file) => {
+    const fd = new FormData();
+    fd.append("stats_image", file);
+    try {
+      const res  = await fetch("/api/cms/upload-stats-image", { method: "POST", body: fd });
+      const json = await res.json();
+      if (json.path) onChange({ ...data, mascotImage: json.path });
+      else alert("Upload failed: " + (json.error || "unknown"));
+    } catch (err) { alert("Upload error: " + err.message); }
+  };
+
+  return (
+    <div>
+      <SectionCard title="Facility Cards">
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          {cards.map((card, i) => (
+            <div key={i} style={{
+              border: "1.5px solid #d0e0f0", borderRadius: 12, padding: "14px 16px",
+              background: "#f8fbff", position: "relative",
+            }}>
+              <div style={{ position: "absolute", top: 10, right: 10 }}>
+                <button onClick={() => removeCard(i)}
+                  style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+                    borderRadius: 8, padding: "5px 10px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>✕</button>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "60px 1fr 1fr 120px", gap: 10, marginBottom: 10 }}>
+                <div>
+                  <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Icon</label>
+                  <input value={card.icon} onChange={(e) => setCard(i, "icon", e.target.value)}
+                    style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                      padding: "7px 6px", fontSize: 20, textAlign: "center", outline: "none",
+                      background: "#fff", boxSizing: "border-box", marginTop: 4 }} />
+                </div>
+                <div>
+                  <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Title</label>
+                  <input value={card.title} onChange={(e) => setCard(i, "title", e.target.value)}
+                    style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                      padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+                      color: "#222", boxSizing: "border-box", marginTop: 4 }} />
+                </div>
+                <div>
+                  <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Color</label>
+                  <select value={card.color} onChange={(e) => setCard(i, "color", e.target.value)}
+                    style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                      padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+                      color: "#222", boxSizing: "border-box", marginTop: 4, cursor: "pointer" }}>
+                    {FAC_COLORS.map((c) => (
+                      <option key={c.value} value={c.value}>{c.label}</option>
+                    ))}
+                  </select>
+                </div>
+                <div style={{ display: "flex", alignItems: "flex-end", gap: 4 }}>
+                  <div style={{ width: 36, height: 36, borderRadius: 8, flexShrink: 0,
+                    background:
+                      card.color === "fac-blue"   ? "#b2e0f7" :
+                      card.color === "fac-pink"   ? "#f7cfe4" :
+                      card.color === "fac-yellow" ? "#fde68a" :
+                      card.color === "fac-navy"   ? "#3b4f7c" : "#e0e0e0",
+                    border: "1.5px solid #d0e0f0",
+                    marginBottom: 0,
+                  }} />
+                </div>
+              </div>
+              <div>
+                <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase" }}>Description</label>
+                <textarea value={card.desc} onChange={(e) => setCard(i, "desc", e.target.value)} rows={2}
+                  style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                    padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff",
+                    color: "#222", boxSizing: "border-box", marginTop: 4, resize: "vertical",
+                    fontFamily: "inherit" }} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <button onClick={addCard}
+          style={{ marginTop: 12, background: "#e0edff", color: "#1a5fa8", border: "none",
+            borderRadius: 8, padding: "9px 18px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+          + Add Facility Card
+        </button>
+      </SectionCard>
+
+      <SectionCard title="Mascot / Side Image">
+        <ImageUploadBlock
+          label="Facilities Section — Mascot Image"
+          imageSrc={mascotImage}
+          uploadEndpoint="/api/cms/upload-stats-image"
+          fieldName="stats_image"
+          onChange={(path) => onChange({ ...data, mascotImage: path })}
+        />
+        <p style={{ fontSize: 11, color: "#888", margin: "4px 0 0" }}>
+          This is the image shown on the right side of the facilities section (mascot / kid photo).
+        </p>
+      </SectionCard>
+    </div>
+  );
+}
+
 // ════ LIVE PREVIEW ════
 
 function LivePreview({ data }) {
@@ -671,6 +808,59 @@ function LivePreview({ data }) {
         ))}
       </div>
 
+      {/* FACILITIES */}
+      {data.facilities && (
+        <div style={{ background: "rgba(255,255,255,0.7)", padding: "20px 24px" }}>
+          <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+            {/* Left + Right card columns */}
+            <div style={{ display: "flex", gap: 14, flex: 2, flexWrap: "wrap" }}>
+              {/* Col 1: cards 0 and 1 */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 14, flex: 1, minWidth: 140 }}>
+                {(data.facilities.cards || []).filter((_, i) => i % 2 === 0).map((card, i) => (
+                  <div key={i} style={{
+                    borderRadius: 16, padding: "14px 16px",
+                    background:
+                      card.color === "fac-blue"   ? "#b2e0f7" :
+                      card.color === "fac-pink"   ? "#f7cfe4" :
+                      card.color === "fac-yellow" ? "#fde68a" :
+                      card.color === "fac-navy"   ? "#3b4f7c" : "#e0e0e0",
+                  }}>
+                    <div style={{ fontSize: 20, marginBottom: 4 }}>{card.icon}</div>
+                    <div style={{ fontWeight: 800, fontSize: 13, color: card.color === "fac-navy" ? "#fff" : "#1a1a2e", marginBottom: 4 }}>{card.title}</div>
+                    <div style={{ fontSize: 11, color: card.color === "fac-navy" ? "rgba(255,255,255,0.8)" : "#555" }}>{card.desc}</div>
+                  </div>
+                ))}
+              </div>
+              {/* Col 2: cards 1 and 3 */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 14, flex: 1, minWidth: 140 }}>
+                {(data.facilities.cards || []).filter((_, i) => i % 2 === 1).map((card, i) => (
+                  <div key={i} style={{
+                    borderRadius: 16, padding: "14px 16px",
+                    background:
+                      card.color === "fac-blue"   ? "#b2e0f7" :
+                      card.color === "fac-pink"   ? "#f7cfe4" :
+                      card.color === "fac-yellow" ? "#fde68a" :
+                      card.color === "fac-navy"   ? "#3b4f7c" : "#e0e0e0",
+                  }}>
+                    <div style={{ fontSize: 20, marginBottom: 4 }}>{card.icon}</div>
+                    <div style={{ fontWeight: 800, fontSize: 13, color: card.color === "fac-navy" ? "#fff" : "#1a1a2e", marginBottom: 4 }}>{card.title}</div>
+                    <div style={{ fontSize: 11, color: card.color === "fac-navy" ? "rgba(255,255,255,0.8)" : "#555" }}>{card.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Mascot image */}
+            {data.facilities.mascotImage && (
+              <div style={{ flex: 1, minWidth: 100, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <img src={data.facilities.mascotImage} alt="Mascot"
+                  style={{ maxHeight: 180, width: "auto", objectFit: "contain", borderRadius: 12 }}
+                  onError={(e) => { e.target.style.display = "none"; }} />
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* LOCATIONS */}
       <div style={{ padding: "20px 24px", background: "#fff" }}>
         <div style={{ fontSize: 11, fontWeight: 800, color: "#F47920",
@@ -725,6 +915,28 @@ function CodeOutput({ data }) {
     (statsImgSrc ? `\n    <img class="img-ss" src="${statsImgSrc}" alt="Fun Factory">` : "") +
     `\n</div>`;
 
+  const facilitiesData = data.facilities || { cards: [], mascotImage: "" };
+  const facilitiesHtml = facilitiesData.cards.length > 0
+    ? `\n<!-- FACILITIES -->\n<section class="section" style="background:rgba(255,255,255,0.7);" id="Facilities">\n    <div class="facilities-grid">\n` +
+      // column 1: even-indexed cards
+      `        <div class="fac-col">\n` +
+      facilitiesData.cards.filter((_, i) => i % 2 === 0).map((c) =>
+        `            <div class="fac-card ${c.color}">\n                <div class="fac-icon">${c.icon}</div>\n                <div class="fac-title">${c.title}</div>\n                <div class="fac-desc">${c.desc}</div>\n            </div>`
+      ).join("\n") +
+      `\n        </div>\n` +
+      // column 2: odd-indexed cards
+      `        <div class="fac-col">\n` +
+      facilitiesData.cards.filter((_, i) => i % 2 === 1).map((c) =>
+        `            <div class="fac-card ${c.color}">\n                <div class="fac-icon">${c.icon}</div>\n                <div class="fac-title">${c.title}</div>\n                <div class="fac-desc">${c.desc}</div>\n            </div>`
+      ).join("\n") +
+      `\n        </div>\n` +
+      // mascot column
+      (facilitiesData.mascotImage
+        ? `        <div class="mascot-col">\n            <div class="mascot-wrap">\n                <div class="mascot-glow"></div>\n                <div class="splash s1"></div>\n                <div class="splash s2"></div>\n                <div class="splash s3"></div>\n                <div class="splash s4"></div>\n                <img class="mascot-img" src="${facilitiesData.mascotImage}" alt="Kids playing">\n            </div>\n        </div>\n`
+        : "") +
+      `    </div>\n</section>`
+    : "";
+
   const code = `<!-- TOP BANNER -->
 <div class="top-banner">
     ${data.topBanner.emoji} ${data.topBanner.text}
@@ -758,7 +970,8 @@ ${data.navbar.links.map((l) => `        <li><a href="${l.href}">${l.label}</a></
     <a href="#" class="btn-outline-blue">${data.hero.cta2}</a>
 </div>
 ${sliderHtml}
-${statsHtml}`;
+${statsHtml}
+${facilitiesHtml}`;
 
   return (
     <div style={{ position: "relative" }}>
@@ -851,9 +1064,10 @@ Reply ONLY with a valid JSON object matching the same structure. No explanation,
       case "navbar":    return <NavbarEditor    data={data.navbar}    onChange={(v) => updateSection("navbar", v)} />;
       case "hero":      return <HeroEditor      data={data.hero}      onChange={(v) => updateSection("hero", v)} />;
       case "stats":     return <StatsEditor     data={data.stats}     onChange={(v) => updateSection("stats", v)} />;
-      case "features":  return <FeaturesEditor  data={data.features}  onChange={(v) => updateSection("features", v)} />;
-      case "locations": return <LocationsEditor data={data.locations} onChange={(v) => updateSection("locations", v)} />;
-      case "footer":    return <FooterEditor    data={data.footer}    onChange={(v) => updateSection("footer", v)} />;
+      case "features":   return <FeaturesEditor   data={data.features}   onChange={(v) => updateSection("features", v)} />;
+      case "locations":  return <LocationsEditor  data={data.locations}  onChange={(v) => updateSection("locations", v)} />;
+      case "facilities": return <FacilitiesEditor data={data.facilities || { cards: [], mascotImage: "" }} onChange={(v) => updateSection("facilities", v)} />;
+      case "footer":     return <FooterEditor     data={data.footer}     onChange={(v) => updateSection("footer", v)} />;
       default: return null;
     }
   };
