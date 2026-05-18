@@ -53,17 +53,41 @@ const defaultData = {
   locations: [
     {
       name: "Nawala Branch",
+      label: "Nawala",
       address: "573, Nawala Road, Rajagiriya",
       phone1: "011 286 2656",
       phone2: "077 360 3777",
+      callHref: "tel:0112862656",
+      cardBg: "#F8D7DA",
+      cardBorder: "#f0b8be",
+      btnBg: "#A0323C",
+      btnShadow: "#7a1e26",
+      btnTextColor: "#fff",
+      mascotImage: "images/location/img.png",
+      mascotWidth: "130px",
     },
     {
       name: "Mount Lavinia Branch",
+      label: "Mount Lavinia",
       address: "3rd Floor, Mount City Building, Galle Road",
       phone1: "011 588 2656",
       phone2: "077 360 3777",
+      callHref: "tel:0115882656",
+      cardBg: "#FFF9C4",
+      cardBorder: "#FFD600",
+      btnBg: "#FFD600",
+      btnShadow: "#c9a800",
+      btnTextColor: "#2a1a00",
+      mascotImage: "images/location/img_1.png",
+      mascotWidth: "90px",
     },
   ],
+  locationsSection: {
+    eyebrow: "Find Us",
+    heading: "Two",
+    headingAccent: "Locations",
+    subheading: "Come visit us — we're closer than you think!",
+  },
   hero2: {
     eyebrow: "Sri Lanka's First & Finest",
     titleLine1: "The Ultimate",
@@ -130,9 +154,60 @@ const defaultData = {
     mascotImage: "images/25d9c599743e1b42f78bef12965dd34f-removebg-preview.png",
   },
   footer: {
-    copyright: "© 2025 Fun Factory — All Rights Reserved.",
+    copyright: "© 2025 Fun Factory — All Rights Reserved. Website by Ribelz.",
     tagline: "Made for kids, by people who love them",
+    // About col
+    aboutText: "Fun Factory is Sri Lanka's premier supervised indoor playground for children aged 0–11 years. With world-class facilities in Nawala and Mount Lavinia, we deliver the ultimate kids play experience in a safe, clean and exciting environment.",
+    partyNote: "Parties can be booked any day of the week. Call us or visit our website!",
+    logoSrc: "images/logo.png",
+    // Contact col
+    phone1: "011 2802656",
+    phone2: "077 3603777",
+    email: "info@funfactory.lk",
+    address1: "573 Nawala Road, Rajagiriya",
+    address2: "3rd Floor, Mount City Building,",
+    address3: "143 1/2 Galle Rd, Mount Lavinia",
+    hours1: "Mon–Fri: 9am–8pm",
+    hours2: "Sat–Sun & Public Holidays: 9am–8pm",
+    // Quick links col
+    quickLinks: [
+      { label: "Jungle Gym",             href: "#" },
+      { label: "Toddlers & Infants",     href: "#" },
+      { label: "Library & Activity Zones", href: "#" },
+      { label: "Cafe",                   href: "#" },
+      { label: "Membership",             href: "#" },
+      { label: "Photo Album",            href: "#" },
+      { label: "Event Calendar",         href: "#" },
+      { label: "Contact Us",             href: "#" },
+      { label: "Terms & Conditions",     href: "#" },
+    ],
+    // Footer location cards
+    footerLocations: [
+      { name: "Nawala Branch",        address: "573, Nawala Road, Rajagiriya",                  tel: "011 286 2656 · 077 360 3777", color: "yellow" },
+      { name: "Mount Lavinia Branch", address: "3rd Floor, Mount City Building, Galle Road",    tel: "011 588 2656 · 077 360 3777", color: "blue"   },
+    ],
+    subscribeHeading: "Subscribe",
+    subscribeText: "Subscribe here with your email to get the very latest news about FUN FACTORY",
+    // Bottom bar links
+    bottomLinks: [
+      { label: "Site Map",          href: "#" },
+      { label: "Privacy Policy",    href: "#" },
+      { label: "Terms & Conditions", href: "#" },
+    ],
   },
+  partyCta: {
+    heading: "Ready to Book a Party?",
+    subtext: "Call us to check availability and packages",
+    phone: "Call 077 360 3777",
+    imgLeft:  "images/location/img_2.png",
+    imgRight: "images/location/img_3.png",
+  },
+  socialLinks: [
+    { platform: "Facebook",  href: "https://www.facebook.com/funfactory.colombo/",                                              imageSrc: "images/social-media/3b1bd7940262729a553854e1f483554a.jpg" },
+    { platform: "Instagram", href: "https://www.instagram.com/funfactory.colombo?igsh=MTdreTVwYTFhbmV2",                       imageSrc: "images/social-media/84899a9d74eddd979fc87bbeac3cb4b1.jpg" },
+    { platform: "YouTube",   href: "https://www.youtube.com/@funfactory102",                                                   imageSrc: "images/social-media/e8f2dd54866d69bed2b2731f0901845f.jpg" },
+    { platform: "TikTok",    href: "https://www.tiktok.com/@funfactorycolombo?_r=1&_t=ZS-96GJVSI9tVS",                        imageSrc: "images/social-media/b89f0f276285b52831e042c14fa6c0c5.jpg" },
+  ],
   services: {
     eyebrow: "Our Services",
     heading: "What We Offer",
@@ -262,6 +337,111 @@ const defaultData = {
       },
     ],
   },
+  facilitiesDetail: {
+    eyebrow: "Everything Kids Love",
+    heading: "Our Facilities",
+    panels: [
+      {
+        id: "jungle",
+        btnIcon: "🌴",
+        btnLabel: "Jungle Gym",
+        btnColor: "jungle",
+        pill: "Adventure Zone",
+        pillColor: "blue",
+        title: "🌴 Jungle Gym",
+        desc1: "The ultimate experience in physical play — climb, jump, crawl and slide through our vibrant, stimulating equipment. Your child's safety is at the forefront: equipment is checked and maintained every single day.",
+        bullets: [
+          "2-lane astro slide",
+          "Largest & cleanest ball pool in Sri Lanka",
+          "Trampoline & rope / cable bridges",
+          "Climbing wall & crawling tube",
+          "Obstacle course and more!",
+        ],
+        desc2: "Your child's safety is at the forefront of our entertainment facility, so we check and maintain our equipment on a daily basis, with strict guidelines for staff and patrons to ensure we continue to have a safe and hygienic environment.\n\nNote: We are officially a SOCKS ONLY FACILITY. All Children and Adults entering the play area are required to wear socks at all times. (socks to be brought with you, or can be purchased at the front desk)",
+        bgColor: "#EBF8FF",
+        accentColor: "#3BAEE8",
+      },
+      {
+        id: "toddler",
+        btnIcon: "👶",
+        btnLabel: "Toddlers & Infants",
+        btnColor: "toddler",
+        pill: "Soft Play Zone",
+        pillColor: "pink",
+        title: "👶 Toddlers & Infants",
+        desc1: "Let your toddler or infant explore freely in the specially designated soft play zone, allowing them to stimulate their senses in a secure environment using our sanitary, interactive toys.",
+        bullets: [],
+        desc2: "",
+        bgColor: "#FFF0F5",
+        accentColor: "#F472B6",
+      },
+      {
+        id: "library",
+        btnIcon: "📚",
+        btnLabel: "Library & Activity",
+        btnColor: "library",
+        pill: "Creative Play",
+        pillColor: "yellow",
+        title: "📚 Library & Activity Zones",
+        desc1: "Let your imagination go wild in our creative play zone. These activity areas are ideal for both parent & child to spend some valuable time together, in a setting conducive to stimulate pretend play.\n\nRead your child a book picked from our library or play tumble towers at the activity table. Your child can make imaginary Mac & Cheese for dinner whilst doing the washing in our play kitchen! Turn your child into a pretty princess or a rootin' tootin' cowboy in our wonderful dress up corner.\n\nThere are many more interactive opportunities at our new venue in Mount Lavinia, especially designed to keep the whole family entertained.",
+        bullets: [],
+        desc2: "",
+        bgColor: "#FFFBEB",
+        accentColor: "#F7C416",
+      },
+      {
+        id: "cafe",
+        btnIcon: "☕",
+        btnLabel: "Café",
+        btnColor: "cafe",
+        pill: "Food & Drinks",
+        pillColor: "navy",
+        title: "☕ Café",
+        desc1: "Enjoy good food and fresh fruit drinks at our café, especially designed to keep an eye on your kids while they play and you relax enjoying some nice food. The cafe also host parties for walk in play customers so talk to our cafe and reception if you like us to cater to a surprise party for your kids.\n\nEnjoy freshly made Burgers, Pasta, Sandwiches, Mongolian Rice, Spaghetti, Milkshakes, Juice, Faluda and many more tasty foods",
+        bullets: [],
+        desc2: "",
+        bgColor: "#EEF2FF",
+        accentColor: "#3730A3",
+      },
+    ],
+  },
+  openingHours: {
+    eyebrow: "Plan Your Visit",
+    heading: "Opening Hours",
+    subheading: "We're open most days — come play, laugh & grow!",
+    noteBar: "🌟 Public holidays? We're always open on public holidays — even on Mondays & Tuesdays!",
+    cards: [
+      {
+        color: "yellow",
+        mascotImage: "images/img.png",
+        monthsLabel: "Months",
+        months: "January · February · March · May · June · September · October · November",
+        times: [
+          { label: "Wed – Sun",                  value: "10AM – 8PM" },
+          { label: "Public & School Holidays",   value: "10AM – 8PM" },
+        ],
+      },
+      {
+        color: "blue",
+        mascotImage: "images/img_1.png",
+        monthsLabel: "Months",
+        months: "April · July · August · December",
+        times: [
+          { label: "Wed – Sun",                  value: "10AM – 8PM" },
+          { label: "Public & School Holidays",   value: "10AM – 8PM" },
+        ],
+      },
+      {
+        color: "red",
+        mascotImage: "images/img_2.png",
+        monthsLabel: "Every Week",
+        months: "Monday & Tuesday",
+        closedNote: "Closed — except on public holidays",
+        closedMascotImage: "images/img_3.png",
+        times: [],
+      },
+    ],
+  },
 };
 
 const SECTIONS = [
@@ -272,13 +452,18 @@ const SECTIONS = [
   { key: "ageBanner", label: "Age Banner",    icon: "🎈" },
   { key: "stats",     label: "Stats Bar",     icon: "📊" },
   { key: "features",  label: "Features Strip",icon: "✨" },
-  { key: "locations",  label: "Locations",      icon: "📍" },
+  { key: "locations",       label: "Locations",        icon: "📍" },
+  { key: "locationsSection", label: "Locations Header", icon: "🗺️" },
+  { key: "partyCta",        label: "Party CTA Banner",  icon: "🎂" },
+  { key: "socialLinks",     label: "Social Media",      icon: "📱" },
   { key: "facilities",   label: "Facilities",       icon: "🏟️" },
   { key: "whoWeAre",    label: "Who We Are",       icon: "🏫" },
   { key: "missionBanner", label: "Mission Banner", icon: "💬" },
   { key: "footer",      label: "Footer",           icon: "📄" },
-  { key: "events",      label: "Events & Promos",  icon: "🎉" },
-  { key: "services",    label: "Services",         icon: "🎟️" },
+  { key: "events",           label: "Events & Promos",  icon: "🎉" },
+  { key: "services",         label: "Services",         icon: "🎟️" },
+  { key: "facilitiesDetail", label: "Facilities Detail", icon: "🌴" },
+  { key: "openingHours",     label: "Opening Hours",    icon: "🕐" },
 ];
 
 const MAX_SLIDER_IMAGES = 6;
@@ -739,35 +924,260 @@ function LocationsEditor({ data, onChange }) {
   const setItem = (i, field, val) => {
     const next = [...data]; next[i] = { ...next[i], [field]: val }; onChange(next);
   };
+  const addLoc = () => onChange([...data, {
+    name: "New Branch", label: "City", address: "Address here",
+    phone1: "011 000 0000", phone2: "077 000 0000",
+    callHref: "tel:0110000000", cardBg: "#F8D7DA", cardBorder: "#f0b8be",
+    btnBg: "#A0323C", btnShadow: "#7a1e26", btnTextColor: "#fff",
+    mascotImage: "", mascotWidth: "100px",
+  }]);
+  const removeLoc = (i) => onChange(data.filter((_, idx) => idx !== i));
+
   return (
-    <SectionCard title="Locations">
+    <div>
       {data.map((loc, i) => (
-        <div key={i} style={{
-          marginBottom: i < data.length - 1 ? 18 : 0,
-          paddingBottom: i < data.length - 1 ? 18 : 0,
-          borderBottom: i < data.length - 1 ? "1px dashed #e0eaf5" : "none",
-        }}>
-          <div style={{ fontSize: 12, fontWeight: 700, color: "#1a5fa8", marginBottom: 8,
-            textTransform: "uppercase", letterSpacing: 0.5 }}>Branch {i + 1}</div>
-          <Field label="Branch Name" value={loc.name}    onChange={(v) => setItem(i, "name", v)} />
-          <Field label="Address"     value={loc.address} onChange={(v) => setItem(i, "address", v)} />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-            <Field label="Phone 1" value={loc.phone1} onChange={(v) => setItem(i, "phone1", v)} />
-            <Field label="Phone 2" value={loc.phone2} onChange={(v) => setItem(i, "phone2", v)} />
+        <SectionCard key={i} title={`Branch ${i + 1} — ${loc.name || ""}`}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 10 }}>
+            <Field label="Branch Name" value={loc.name||""}  onChange={(v) => setItem(i, "name", v)} />
+            <Field label="Label (uppercase tag)" value={loc.label||""} onChange={(v) => setItem(i, "label", v)} />
           </div>
-        </div>
+          <Field label="Address"  value={loc.address||""} onChange={(v) => setItem(i, "address", v)} />
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+            <Field label="Phone 1" value={loc.phone1||""} onChange={(v) => setItem(i, "phone1", v)} />
+            <Field label="Phone 2" value={loc.phone2||""} onChange={(v) => setItem(i, "phone2", v)} />
+          </div>
+          <Field label="Call href (tel:)" value={loc.callHref||""} onChange={(v) => setItem(i, "callHref", v)} hint='e.g. tel:0112862656' />
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 10 }}>
+            <div>
+              <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Card Background</label>
+              <input type="color" value={loc.cardBg||"#F8D7DA"} onChange={(e)=>setItem(i,"cardBg",e.target.value)}
+                style={{ width:"100%", height:34, border:"1.5px solid #d0e0f0", borderRadius:8, marginTop:4, cursor:"pointer" }} />
+            </div>
+            <div>
+              <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Card Border</label>
+              <input type="color" value={loc.cardBorder||"#f0b8be"} onChange={(e)=>setItem(i,"cardBorder",e.target.value)}
+                style={{ width:"100%", height:34, border:"1.5px solid #d0e0f0", borderRadius:8, marginTop:4, cursor:"pointer" }} />
+            </div>
+            <div>
+              <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Button Color</label>
+              <input type="color" value={loc.btnBg||"#A0323C"} onChange={(e)=>setItem(i,"btnBg",e.target.value)}
+                style={{ width:"100%", height:34, border:"1.5px solid #d0e0f0", borderRadius:8, marginTop:4, cursor:"pointer" }} />
+            </div>
+          </div>
+
+          <ImageUploadInline label="Branch Mascot / Illustration" src={loc.mascotImage||""} onSet={(v)=>setItem(i,"mascotImage",v)} />
+          <Field label="Mascot Width (e.g. 130px)" value={loc.mascotWidth||"100px"} onChange={(v)=>setItem(i,"mascotWidth",v)} />
+
+          {data.length > 1 && (
+            <button onClick={() => removeLoc(i)}
+              style={{ marginTop:8, background:"#fce8e8", color:"#a32d2d", border:"none",
+                borderRadius:8, padding:"7px 14px", cursor:"pointer", fontSize:12, fontWeight:700 }}>
+              ✕ Remove Branch
+            </button>
+          )}
+        </SectionCard>
       ))}
+      <button onClick={addLoc}
+        style={{ background:"#e0edff", color:"#1a5fa8", border:"none",
+          borderRadius:8, padding:"10px 20px", cursor:"pointer", fontSize:13, fontWeight:700 }}>
+        + Add Branch
+      </button>
+    </div>
+  );
+}
+
+function LocationsSectionEditor({ data, onChange }) {
+  const set = (k) => (v) => onChange({ ...data, [k]: v });
+  return (
+    <SectionCard title="Locations Section Header">
+      <Field label="Eyebrow (e.g. Find Us)" value={data.eyebrow||""} onChange={set("eyebrow")} />
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
+        <Field label="Heading (dark word)" value={data.heading||""} onChange={set("heading")} />
+        <Field label="Heading Accent (orange word)" value={data.headingAccent||""} onChange={set("headingAccent")} />
+      </div>
+      <Field label="Sub-heading" value={data.subheading||""} onChange={set("subheading")} />
     </SectionCard>
+  );
+}
+
+function PartyCTAEditor({ data, onChange }) {
+  const set = (k) => (v) => onChange({ ...data, [k]: v });
+  return (
+    <SectionCard title="Party CTA Banner">
+      <Field label="Heading"  value={data.heading||""} onChange={set("heading")} />
+      <Field label="Subtext"  value={data.subtext||""} onChange={set("subtext")} />
+      <Field label="Phone / CTA Text" value={data.phone||""} onChange={set("phone")} />
+      <ImageUploadInline label="Left Image"  src={data.imgLeft||""}  onSet={set("imgLeft")}  />
+      <ImageUploadInline label="Right Image" src={data.imgRight||""} onSet={set("imgRight")} />
+    </SectionCard>
+  );
+}
+
+function SocialLinksEditor({ data, onChange }) {
+  const setItem = (i, field, val) => {
+    const next = [...data]; next[i] = { ...next[i], [field]: val }; onChange(next);
+  };
+  const addLink    = () => onChange([...data, { platform: "New Platform", href: "https://", imageSrc: "" }]);
+  const removeLink = (i) => onChange(data.filter((_, idx) => idx !== i));
+
+  return (
+    <div>
+      <SectionCard title="Social Media Links">
+        <p style={{ fontSize:11, color:"#888", margin:"0 0 14px" }}>Each item = one social icon shown on the website.</p>
+        {data.map((item, i) => (
+          <div key={i} style={{ border:"1.5px solid #d0e0f0", borderRadius:12, padding:"14px 16px",
+            background:"#f8fbff", marginBottom:12, position:"relative" }}>
+            <div style={{ position:"absolute", top:10, right:10 }}>
+              <button onClick={() => removeLink(i)}
+                style={{ background:"#fce8e8", color:"#a32d2d", border:"none",
+                  borderRadius:8, padding:"5px 10px", cursor:"pointer", fontSize:12, fontWeight:700 }}>✕</button>
+            </div>
+            <div style={{ fontSize:11, fontWeight:800, color:"#1a5fa8", marginBottom:10, textTransform:"uppercase" }}>
+              {item.platform || `Link ${i+1}`}
+            </div>
+            <Field label="Platform Name" value={item.platform||""} onChange={(v)=>setItem(i,"platform",v)} />
+            <Field label="URL" value={item.href||""} onChange={(v)=>setItem(i,"href",v)} />
+            <ImageUploadInline label="Icon Image" src={item.imageSrc||""} onSet={(v)=>setItem(i,"imageSrc",v)} />
+          </div>
+        ))}
+        <button onClick={addLink}
+          style={{ background:"#e0edff", color:"#1a5fa8", border:"none",
+            borderRadius:8, padding:"10px 20px", cursor:"pointer", fontSize:13, fontWeight:700 }}>
+          + Add Social Link
+        </button>
+      </SectionCard>
+    </div>
   );
 }
 
 function FooterEditor({ data, onChange }) {
   const set = (k) => (v) => onChange({ ...data, [k]: v });
+
+  const setQuickLink = (i, field, val) => {
+    const next = [...(data.quickLinks||[])]; next[i] = { ...next[i], [field]: val };
+    onChange({ ...data, quickLinks: next });
+  };
+  const addQuickLink    = () => onChange({ ...data, quickLinks: [...(data.quickLinks||[]), { label: "New Link", href: "#" }] });
+  const removeQuickLink = (i) => onChange({ ...data, quickLinks: (data.quickLinks||[]).filter((_,idx)=>idx!==i) });
+
+  const setFooterLoc = (i, field, val) => {
+    const next = [...(data.footerLocations||[])]; next[i] = { ...next[i], [field]: val };
+    onChange({ ...data, footerLocations: next });
+  };
+
+  const setBottomLink = (i, field, val) => {
+    const next = [...(data.bottomLinks||[])]; next[i] = { ...next[i], [field]: val };
+    onChange({ ...data, bottomLinks: next });
+  };
+  const addBottomLink    = () => onChange({ ...data, bottomLinks: [...(data.bottomLinks||[]), { label: "New Link", href: "#" }] });
+  const removeBottomLink = (i) => onChange({ ...data, bottomLinks: (data.bottomLinks||[]).filter((_,idx)=>idx!==i) });
+
   return (
-    <SectionCard title="Footer">
-      <Field label="Copyright Text" value={data.copyright} onChange={set("copyright")} />
-      <Field label="Tagline"        value={data.tagline}   onChange={set("tagline")} />
-    </SectionCard>
+    <div>
+      <SectionCard title="About Column">
+        <Field label="About Text" value={data.aboutText||""} onChange={set("aboutText")} multiline />
+        <Field label="Party Bookings Note" value={data.partyNote||""} onChange={set("partyNote")} multiline />
+        <ImageUploadInline label="Footer Logo" src={data.logoSrc||""} onSet={set("logoSrc")} />
+      </SectionCard>
+
+      <SectionCard title="Contact Column">
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
+          <Field label="Phone 1" value={data.phone1||""} onChange={set("phone1")} />
+          <Field label="Phone 2" value={data.phone2||""} onChange={set("phone2")} />
+        </div>
+        <Field label="Email" value={data.email||""} onChange={set("email")} />
+        <Field label="Address Line 1" value={data.address1||""} onChange={set("address1")} />
+        <Field label="Address Line 2" value={data.address2||""} onChange={set("address2")} />
+        <Field label="Address Line 3" value={data.address3||""} onChange={set("address3")} />
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
+          <Field label="Hours Line 1" value={data.hours1||""} onChange={set("hours1")} />
+          <Field label="Hours Line 2" value={data.hours2||""} onChange={set("hours2")} />
+        </div>
+      </SectionCard>
+
+      <SectionCard title="Quick Links Column">
+        <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
+          {(data.quickLinks||[]).map((lnk, i) => (
+            <div key={i} style={{ display:"flex", gap:8, alignItems:"center" }}>
+              <input value={lnk.label||""} onChange={(e)=>setQuickLink(i,"label",e.target.value)}
+                placeholder="Label"
+                style={{ flex:1, border:"1.5px solid #d0e0f0", borderRadius:8,
+                  padding:"7px 10px", fontSize:12, outline:"none", background:"#fff", color:"#222" }} />
+              <input value={lnk.href||""} onChange={(e)=>setQuickLink(i,"href",e.target.value)}
+                placeholder="URL / #anchor"
+                style={{ flex:1, border:"1.5px solid #d0e0f0", borderRadius:8,
+                  padding:"7px 10px", fontSize:12, outline:"none", background:"#fff", color:"#555" }} />
+              <button onClick={()=>removeQuickLink(i)}
+                style={{ background:"#fce8e8", color:"#a32d2d", border:"none",
+                  borderRadius:8, padding:"7px 10px", cursor:"pointer", fontSize:12, fontWeight:700 }}>✕</button>
+            </div>
+          ))}
+        </div>
+        <button onClick={addQuickLink}
+          style={{ marginTop:10, background:"#e0edff", color:"#1a5fa8", border:"none",
+            borderRadius:8, padding:"7px 14px", cursor:"pointer", fontSize:12, fontWeight:700 }}>
+          + Add Link
+        </button>
+      </SectionCard>
+
+      <SectionCard title="Footer Location Cards">
+        {(data.footerLocations||[]).map((loc, i) => (
+          <div key={i} style={{ marginBottom:14, paddingBottom:14,
+            borderBottom: i < (data.footerLocations||[]).length-1 ? "1px dashed #e0eaf5" : "none" }}>
+            <div style={{ fontSize:11, fontWeight:700, color:"#1a5fa8", marginBottom:8, textTransform:"uppercase" }}>Card {i+1}</div>
+            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
+              <Field label="Name" value={loc.name||""} onChange={(v)=>setFooterLoc(i,"name",v)} />
+              <div>
+                <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Color</label>
+                <select value={loc.color||"yellow"} onChange={(e)=>setFooterLoc(i,"color",e.target.value)}
+                  style={{ width:"100%", border:"1.5px solid #d0e0f0", borderRadius:8,
+                    padding:"7px 10px", fontSize:13, outline:"none", background:"#fff", color:"#222",
+                    boxSizing:"border-box", marginTop:4 }}>
+                  {["yellow","blue","red","green"].map(c=><option key={c} value={c}>{c}</option>)}
+                </select>
+              </div>
+            </div>
+            <Field label="Address" value={loc.address||""} onChange={(v)=>setFooterLoc(i,"address",v)} />
+            <Field label="Tel" value={loc.tel||""}     onChange={(v)=>setFooterLoc(i,"tel",v)} />
+          </div>
+        ))}
+      </SectionCard>
+
+      <SectionCard title="Subscribe & Bottom Bar">
+        <Field label="Subscribe Heading" value={data.subscribeHeading||""} onChange={set("subscribeHeading")} />
+        <Field label="Subscribe Text"    value={data.subscribeText||""}    onChange={set("subscribeText")} multiline />
+        <div style={{ marginTop:10 }}>
+          <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase", display:"block", marginBottom:6 }}>Bottom Bar Links</label>
+          <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
+            {(data.bottomLinks||[]).map((lnk, i) => (
+              <div key={i} style={{ display:"flex", gap:8, alignItems:"center" }}>
+                <input value={lnk.label||""} onChange={(e)=>setBottomLink(i,"label",e.target.value)}
+                  placeholder="Label"
+                  style={{ flex:1, border:"1.5px solid #d0e0f0", borderRadius:8,
+                    padding:"7px 10px", fontSize:12, outline:"none", background:"#fff", color:"#222" }} />
+                <input value={lnk.href||""} onChange={(e)=>setBottomLink(i,"href",e.target.value)}
+                  placeholder="URL"
+                  style={{ flex:1, border:"1.5px solid #d0e0f0", borderRadius:8,
+                    padding:"7px 10px", fontSize:12, outline:"none", background:"#fff", color:"#555" }} />
+                <button onClick={()=>removeBottomLink(i)}
+                  style={{ background:"#fce8e8", color:"#a32d2d", border:"none",
+                    borderRadius:8, padding:"7px 10px", cursor:"pointer", fontSize:12, fontWeight:700 }}>✕</button>
+              </div>
+            ))}
+          </div>
+          <button onClick={addBottomLink}
+            style={{ marginTop:8, background:"#e0edff", color:"#1a5fa8", border:"none",
+              borderRadius:8, padding:"7px 14px", cursor:"pointer", fontSize:12, fontWeight:700 }}>
+            + Add Link
+          </button>
+        </div>
+        <div style={{ marginTop:14, paddingTop:14, borderTop:"1px dashed #e0eaf5" }}>
+          <Field label="Copyright Text" value={data.copyright||""} onChange={set("copyright")} />
+          <Field label="Tagline" value={data.tagline||""} onChange={set("tagline")} />
+        </div>
+      </SectionCard>
+    </div>
   );
 }
 
@@ -2059,6 +2469,105 @@ function LivePreview({ data }) {
         );
       })()}
 
+      {/* FACILITIES DETAIL */}
+      {data.facilitiesDetail && (data.facilitiesDetail.panels||[]).length > 0 && (() => {
+        const fd = data.facilitiesDetail;
+        const first = fd.panels[0];
+        const pillColors = { blue:"#3BAEE8", pink:"#F472B6", yellow:"#F7C416", navy:"#3730A3", green:"#4caf50", red:"#E63329" };
+        return (
+          <div style={{ padding:"24px 24px", background:"#f4f8ff", borderTop:"2px solid #e0eaf5" }}>
+            <div style={{ fontSize:11, fontWeight:800, color:"#E63329", textTransform:"uppercase", letterSpacing:2, marginBottom:4 }}>{fd.eyebrow}</div>
+            <div style={{ fontFamily:"serif", fontSize:20, fontWeight:900, color:"#1a1a2e", marginBottom:14 }}>{fd.heading}</div>
+            <div style={{ display:"flex", gap:14, flexWrap:"wrap" }}>
+              {/* sidebar */}
+              <div style={{ width:160, flexShrink:0, display:"flex", flexDirection:"column", gap:8 }}>
+                {fd.panels.map((p,i)=>(
+                  <div key={i} style={{ background: i===0?"#3BAEE8":"#f0f4f8", color:i===0?"#fff":"#333",
+                    borderRadius:10, padding:"10px 14px", fontWeight:700, fontSize:13, display:"flex", alignItems:"center", gap:8 }}>
+                    <span>{p.btnIcon}</span><span>{p.btnLabel}</span>
+                  </div>
+                ))}
+              </div>
+              {/* detail */}
+              {first && (
+                <div style={{ flex:1, minWidth:200, background:first.bgColor||"#EBF8FF",
+                  borderRadius:16, padding:"18px 20px" }}>
+                  <span style={{ background:pillColors[first.pillColor]||"#3BAEE8", color:"#fff",
+                    fontSize:10, fontWeight:800, padding:"4px 12px", borderRadius:20, textTransform:"uppercase",
+                    letterSpacing:1, display:"inline-block", marginBottom:10 }}>{first.pill}</span>
+                  <div style={{ fontWeight:900, fontSize:16, marginBottom:8 }}>{first.title}</div>
+                  <div style={{ fontSize:11, color:"#555", lineHeight:1.6, marginBottom:10 }}>{(first.desc1||"").split("\n\n")[0]}</div>
+                  {(first.bullets||[]).length>0 && (
+                    <ul style={{ paddingLeft:18, margin:"0 0 10px" }}>
+                      {first.bullets.slice(0,4).map((b,i)=>(
+                        <li key={i} style={{ fontSize:11, color:"#444", marginBottom:4 }}>{b}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })()}
+
+      {/* OPENING HOURS */}
+      {data.openingHours && (data.openingHours.cards||[]).length > 0 && (() => {
+        const oh = data.openingHours;
+        const cardBg  = { yellow:"#fffde7", blue:"#e3f2fd", red:"#fce4ec", green:"#e8f5e9", orange:"#fff3e0" };
+        const cardBdr = { yellow:"#fdd835", blue:"#90caf9", red:"#f48fb1", green:"#a5d6a7", orange:"#ffcc80" };
+        const timeBg  = { yellow:"#ffd54f", blue:"#64b5f6", red:"#e57373", green:"#81c784", orange:"#ffb74d" };
+        return (
+          <div style={{ padding:"24px 24px", background:"#fff", borderTop:"2px solid #e0eaf5" }}>
+            <div style={{ textAlign:"center", marginBottom:18 }}>
+              <div style={{ fontSize:11, fontWeight:800, color:"#F47920", textTransform:"uppercase", letterSpacing:2, marginBottom:4 }}>{oh.eyebrow}</div>
+              <div style={{ fontFamily:"serif", fontSize:22, fontWeight:900, color:"#1a1a2e" }}>{oh.heading}</div>
+              {oh.subheading && <div style={{ fontSize:12, color:"#888", marginTop:4 }}>{oh.subheading}</div>}
+            </div>
+            <div style={{ display:"flex", flexDirection:"column", gap:12, maxWidth:700, margin:"0 auto" }}>
+              {oh.cards.map((card,i)=>(
+                <div key={i} style={{ background:cardBg[card.color]||"#fffde7",
+                  border:`2px solid ${cardBdr[card.color]||"#fdd835"}`,
+                  borderRadius:14, padding:"16px 18px", display:"flex", alignItems:"center", gap:14, flexWrap:"wrap" }}>
+                  {card.mascotImage && (
+                    <img src={card.mascotImage} alt="mascot"
+                      style={{ width:52, height:52, objectFit:"contain", flexShrink:0 }}
+                      onError={(e)=>{ e.target.style.display="none"; }} />
+                  )}
+                  <div style={{ flex:1, minWidth:120 }}>
+                    <div style={{ fontSize:10, fontWeight:800, textTransform:"uppercase",
+                      color:timeBg[card.color]||"#ffd54f", letterSpacing:1, marginBottom:3 }}>{card.monthsLabel}</div>
+                    <div style={{ fontSize:12, fontWeight:700, color:"#333" }}>{card.months}</div>
+                    {card.closedNote && <div style={{ fontSize:11, color:"#888", marginTop:2 }}>{card.closedNote}</div>}
+                  </div>
+                  <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
+                    {(card.times||[]).map((t,j)=>(
+                      <div key={j} style={{ background:timeBg[card.color]||"#ffd54f", color:"#1a1a2e",
+                        borderRadius:8, padding:"6px 14px", textAlign:"right" }}>
+                        <div style={{ fontSize:9, fontWeight:800, textTransform:"uppercase", letterSpacing:0.5 }}>{t.label}</div>
+                        <div style={{ fontSize:14, fontWeight:900 }}>{t.value}</div>
+                      </div>
+                    ))}
+                    {card.closedMascotImage && (
+                      <img src={card.closedMascotImage} alt="closed"
+                        style={{ width:52, height:52, objectFit:"contain", alignSelf:"center" }}
+                        onError={(e)=>{ e.target.style.display="none"; }} />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+            {oh.noteBar && (
+              <div style={{ marginTop:14, background:"#f0faf5", border:"1.5px dashed #a7d7c5",
+                borderRadius:10, padding:"10px 16px", fontSize:12, color:"#2d7a5c",
+                fontWeight:700, textAlign:"center", maxWidth:700, marginLeft:"auto", marginRight:"auto" }}>
+                {oh.noteBar}
+              </div>
+            )}
+          </div>
+        );
+      })()}
+
       {/* FOOTER */}
       <div style={{ background: "#0e3d6e", color: "rgba(255,255,255,0.5)",
         textAlign: "center", padding: "14px", fontSize: 11 }}>
@@ -2389,6 +2898,357 @@ ${servicesHtml}`;
   );
 }
 
+// ════ FACILITIES DETAIL EDITOR ════
+
+function ImageUploadInline({ label, src, fieldKey, onSet }) {
+  const [uploading, setUploading] = useState(false);
+  const upload = (file) => {
+    if (!file) return;
+    setUploading(true);
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      onSet(e.target.result); // instant base64 preview
+      try {
+        const fd = new FormData();
+        fd.append("event_image", file);
+        const res = await fetch("/api/cms/upload-event-image", { method: "POST", body: fd });
+        const ct = res.headers.get("content-type") || "";
+        if (ct.includes("application/json")) {
+          const json = await res.json();
+          if (json.path) onSet(json.path);
+        }
+      } catch (_) {}
+      setUploading(false);
+    };
+    reader.onerror = () => setUploading(false);
+    reader.readAsDataURL(file);
+  };
+  return (
+    <div style={{ marginBottom: 10 }}>
+      <label style={{ fontSize: 11, fontWeight: 600, color: "#888", textTransform: "uppercase", display: "block", marginBottom: 6 }}>{label}</label>
+      <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+        <div style={{ width: 72, height: 56, borderRadius: 8, border: "1.5px solid #d0e0f0",
+          background: "#f0f4f8", overflow: "hidden", flexShrink: 0, display: "flex",
+          alignItems: "center", justifyContent: "center" }}>
+          {src
+            ? <img src={src} alt={label} style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                onError={(e) => { e.target.style.display = "none"; }} />
+            : <span style={{ fontSize: 10, color: "#bbb" }}>No img</span>
+          }
+        </div>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 5 }}>
+          <input type="text" value={src || ""} onChange={(e) => onSet(e.target.value)}
+            placeholder="images/photo.png or URL"
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "6px 10px", fontSize: 12, outline: "none", background: "#fff", color: "#444",
+              boxSizing: "border-box" }} />
+          <label style={{ display: "inline-flex", alignItems: "center", gap: 5,
+            background: uploading ? "#d0e8d0" : "#e0edff",
+            color: uploading ? "#1a7a1a" : "#1a5fa8", borderRadius: 8,
+            padding: "6px 12px", cursor: uploading ? "default" : "pointer",
+            fontSize: 12, fontWeight: 700, width: "fit-content" }}>
+            {uploading ? "⏳ Uploading..." : "🖼 Upload Image"}
+            <input type="file" accept="image/*" style={{ display: "none" }}
+              onChange={(e) => { const f = e.target.files[0]; if (f) upload(f); }} />
+          </label>
+        </div>
+        {src && (
+          <button onClick={() => onSet("")}
+            style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+              borderRadius: 8, padding: "7px 10px", cursor: "pointer", fontSize: 12,
+              fontWeight: 700, flexShrink: 0, alignSelf: "flex-start" }}>✕</button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function FacilityPanelEditor({ panel, index, onChange, onRemove }) {
+  const set = (field, val) => onChange({ ...panel, [field]: val });
+  const setBullet = (i, val) => { const b = [...(panel.bullets||[])]; b[i]=val; set("bullets", b); };
+  const addBullet    = () => set("bullets", [...(panel.bullets||[]), "New item"]);
+  const removeBullet = (i) => set("bullets", (panel.bullets||[]).filter((_,idx)=>idx!==i));
+
+  return (
+    <div style={{ border:"1.5px solid #d0e0f0", borderRadius:14, padding:"18px 18px",
+      background:"#f8fbff", marginBottom:16, position:"relative" }}>
+      <div style={{ position:"absolute", top:12, right:12 }}>
+        <button onClick={onRemove}
+          style={{ background:"#fce8e8", color:"#a32d2d", border:"none",
+            borderRadius:8, padding:"5px 10px", cursor:"pointer", fontSize:12, fontWeight:700 }}>✕ Remove</button>
+      </div>
+      <div style={{ fontSize:12, fontWeight:800, color:"#1a5fa8", marginBottom:14,
+        textTransform:"uppercase", letterSpacing:0.5 }}>Panel {index+1}</div>
+
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, marginBottom:10 }}>
+        <div>
+          <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Button Icon</label>
+          <input value={panel.btnIcon||""} onChange={(e)=>set("btnIcon",e.target.value)}
+            placeholder="e.g. 🌴"
+            style={{ width:"100%", border:"1.5px solid #d0e0f0", borderRadius:8,
+              padding:"7px 10px", fontSize:13, outline:"none", background:"#fff", color:"#222",
+              boxSizing:"border-box", marginTop:4 }} />
+        </div>
+        <div>
+          <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Button Label</label>
+          <input value={panel.btnLabel||""} onChange={(e)=>set("btnLabel",e.target.value)}
+            style={{ width:"100%", border:"1.5px solid #d0e0f0", borderRadius:8,
+              padding:"7px 10px", fontSize:13, outline:"none", background:"#fff", color:"#222",
+              boxSizing:"border-box", marginTop:4 }} />
+        </div>
+      </div>
+
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, marginBottom:10 }}>
+        <div>
+          <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Pill Label</label>
+          <input value={panel.pill||""} onChange={(e)=>set("pill",e.target.value)}
+            style={{ width:"100%", border:"1.5px solid #d0e0f0", borderRadius:8,
+              padding:"7px 10px", fontSize:13, outline:"none", background:"#fff", color:"#222",
+              boxSizing:"border-box", marginTop:4 }} />
+        </div>
+        <div>
+          <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Pill Color</label>
+          <select value={panel.pillColor||"blue"} onChange={(e)=>set("pillColor",e.target.value)}
+            style={{ width:"100%", border:"1.5px solid #d0e0f0", borderRadius:8,
+              padding:"7px 10px", fontSize:13, outline:"none", background:"#fff", color:"#222",
+              boxSizing:"border-box", marginTop:4, cursor:"pointer" }}>
+            {["blue","pink","yellow","navy","green","red"].map(c=><option key={c} value={c}>{c.charAt(0).toUpperCase()+c.slice(1)}</option>)}
+          </select>
+        </div>
+      </div>
+
+      <div style={{ marginBottom:10 }}>
+        <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Panel Title</label>
+        <input value={panel.title||""} onChange={(e)=>set("title",e.target.value)}
+          style={{ width:"100%", border:"1.5px solid #d0e0f0", borderRadius:8,
+            padding:"7px 10px", fontSize:13, outline:"none", background:"#fff", color:"#222",
+            boxSizing:"border-box", marginTop:4 }} />
+      </div>
+
+      <div style={{ marginBottom:10 }}>
+        <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Main Description</label>
+        <textarea value={panel.desc1||""} onChange={(e)=>set("desc1",e.target.value)} rows={4}
+          style={{ width:"100%", border:"1.5px solid #d0e0f0", borderRadius:8,
+            padding:"7px 10px", fontSize:12, outline:"none", background:"#fff", color:"#222",
+            boxSizing:"border-box", marginTop:4, resize:"vertical", fontFamily:"inherit" }} />
+        <p style={{ fontSize:11, color:"#aaa", margin:"3px 0 0" }}>Use \n\n for paragraph breaks</p>
+      </div>
+
+      <div style={{ marginBottom:10 }}>
+        <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase", display:"block", marginBottom:8 }}>Bullet Points</label>
+        <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
+          {(panel.bullets||[]).map((b,i)=>(
+            <div key={i} style={{ display:"flex", gap:8, alignItems:"center" }}>
+              <input value={b} onChange={(e)=>setBullet(i,e.target.value)}
+                style={{ flex:1, border:"1.5px solid #d0e0f0", borderRadius:8,
+                  padding:"7px 10px", fontSize:12, outline:"none", background:"#fff", color:"#222" }} />
+              <button onClick={()=>removeBullet(i)}
+                style={{ background:"#fce8e8", color:"#a32d2d", border:"none",
+                  borderRadius:8, padding:"7px 10px", cursor:"pointer", fontSize:12, fontWeight:700 }}>✕</button>
+            </div>
+          ))}
+        </div>
+        <button onClick={addBullet}
+          style={{ marginTop:8, background:"#e0edff", color:"#1a5fa8", border:"none",
+            borderRadius:8, padding:"7px 14px", cursor:"pointer", fontSize:12, fontWeight:700 }}>
+          + Add Bullet
+        </button>
+      </div>
+
+      <div style={{ marginBottom:10 }}>
+        <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Extra Description (below bullets)</label>
+        <textarea value={panel.desc2||""} onChange={(e)=>set("desc2",e.target.value)} rows={3}
+          style={{ width:"100%", border:"1.5px solid #d0e0f0", borderRadius:8,
+            padding:"7px 10px", fontSize:12, outline:"none", background:"#fff", color:"#222",
+            boxSizing:"border-box", marginTop:4, resize:"vertical", fontFamily:"inherit" }} />
+      </div>
+
+      <ImageUploadInline label="Panel Image (optional)" src={panel.imageSrc||""} onSet={(v)=>set("imageSrc",v)} />
+
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
+        <div>
+          <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Background Color</label>
+          <input type="color" value={panel.bgColor||"#EBF8FF"} onChange={(e)=>set("bgColor",e.target.value)}
+            style={{ width:"100%", height:36, border:"1.5px solid #d0e0f0", borderRadius:8,
+              marginTop:4, cursor:"pointer" }} />
+        </div>
+        <div>
+          <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Accent Color</label>
+          <input type="color" value={panel.accentColor||"#3BAEE8"} onChange={(e)=>set("accentColor",e.target.value)}
+            style={{ width:"100%", height:36, border:"1.5px solid #d0e0f0", borderRadius:8,
+              marginTop:4, cursor:"pointer" }} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FacilitiesDetailEditor({ data, onChange }) {
+  const set = (k,v) => onChange({ ...data, [k]: v });
+  const panels = data.panels || [];
+  const updatePanel  = (i, val) => { const n=[...panels]; n[i]=val; set("panels",n); };
+  const removePanel  = (i) => set("panels", panels.filter((_,idx)=>idx!==i));
+  const addPanel     = () => set("panels", [...panels, {
+    id: "new-panel", btnIcon:"🎯", btnLabel:"New Zone", btnColor:"jungle",
+    pill:"New Zone", pillColor:"blue", title:"🎯 New Zone",
+    desc1:"Describe this zone here.", bullets:[], desc2:"",
+    bgColor:"#EBF8FF", accentColor:"#3BAEE8",
+  }]);
+
+  return (
+    <div>
+      <SectionCard title="Section Header">
+        <Field label="Eyebrow Text" value={data.eyebrow||""} onChange={(v)=>set("eyebrow",v)} hint="Small label above heading" />
+        <Field label="Section Heading" value={data.heading||""} onChange={(v)=>set("heading",v)} />
+      </SectionCard>
+      <SectionCard title="Facility Panels">
+        <p style={{ fontSize:11, color:"#888", margin:"0 0 14px" }}>
+          Each panel = one tab in the sidebar. Click a panel to view its content on the website.
+        </p>
+        {panels.map((panel,i)=>(
+          <FacilityPanelEditor key={i} panel={panel} index={i}
+            onChange={(val)=>updatePanel(i,val)}
+            onRemove={()=>removePanel(i)} />
+        ))}
+        <button onClick={addPanel}
+          style={{ background:"#e0edff", color:"#1a5fa8", border:"none",
+            borderRadius:8, padding:"10px 20px", cursor:"pointer", fontSize:13, fontWeight:700 }}>
+          + Add Panel
+        </button>
+      </SectionCard>
+    </div>
+  );
+}
+
+// ════ OPENING HOURS EDITOR ════
+
+function OpeningHoursCardEditor({ card, index, onChange, onRemove }) {
+  const set = (field, val) => onChange({ ...card, [field]: val });
+  const setTime = (i, field, val) => {
+    const t = [...(card.times||[])]; t[i]={ ...t[i], [field]: val }; set("times", t);
+  };
+  const addTime    = () => set("times", [...(card.times||[]), { label:"New Day", value:"10AM – 8PM" }]);
+  const removeTime = (i) => set("times", (card.times||[]).filter((_,idx)=>idx!==i));
+
+  return (
+    <div style={{ border:"1.5px solid #d0e0f0", borderRadius:14, padding:"18px 18px",
+      background:"#f8fbff", marginBottom:16, position:"relative" }}>
+      <div style={{ position:"absolute", top:12, right:12 }}>
+        <button onClick={onRemove}
+          style={{ background:"#fce8e8", color:"#a32d2d", border:"none",
+            borderRadius:8, padding:"5px 10px", cursor:"pointer", fontSize:12, fontWeight:700 }}>✕ Remove</button>
+      </div>
+      <div style={{ fontSize:12, fontWeight:800, color:"#1a5fa8", marginBottom:14,
+        textTransform:"uppercase", letterSpacing:0.5 }}>Card {index+1}</div>
+
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, marginBottom:10 }}>
+        <div>
+          <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Card Color Theme</label>
+          <select value={card.color||"yellow"} onChange={(e)=>set("color",e.target.value)}
+            style={{ width:"100%", border:"1.5px solid #d0e0f0", borderRadius:8,
+              padding:"7px 10px", fontSize:13, outline:"none", background:"#fff", color:"#222",
+              boxSizing:"border-box", marginTop:4, cursor:"pointer" }}>
+            {["yellow","blue","red","green","orange"].map(c=><option key={c} value={c}>{c.charAt(0).toUpperCase()+c.slice(1)}</option>)}
+          </select>
+        </div>
+        <div />
+      </div>
+      <ImageUploadInline label="Mascot Image" src={card.mascotImage||""} onSet={(v)=>set("mascotImage",v)} />
+
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, marginBottom:10 }}>
+        <div>
+          <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Months Label</label>
+          <input value={card.monthsLabel||"Months"} onChange={(e)=>set("monthsLabel",e.target.value)}
+            style={{ width:"100%", border:"1.5px solid #d0e0f0", borderRadius:8,
+              padding:"7px 10px", fontSize:13, outline:"none", background:"#fff", color:"#222",
+              boxSizing:"border-box", marginTop:4 }} />
+        </div>
+        <div>
+          <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Months / Days Text</label>
+          <input value={card.months||""} onChange={(e)=>set("months",e.target.value)}
+            placeholder="January · February · ..."
+            style={{ width:"100%", border:"1.5px solid #d0e0f0", borderRadius:8,
+              padding:"7px 10px", fontSize:13, outline:"none", background:"#fff", color:"#222",
+              boxSizing:"border-box", marginTop:4 }} />
+        </div>
+      </div>
+
+      <div style={{ marginBottom:10 }}>
+        <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase" }}>Closed Note (leave blank if open)</label>
+        <input value={card.closedNote||""} onChange={(e)=>set("closedNote",e.target.value)}
+          placeholder="e.g. Closed — except on public holidays"
+          style={{ width:"100%", border:"1.5px solid #d0e0f0", borderRadius:8,
+            padding:"7px 10px", fontSize:13, outline:"none", background:"#fff", color:"#222",
+            boxSizing:"border-box", marginTop:4 }} />
+      </div>
+
+      {card.closedNote && (
+        <ImageUploadInline label="Closed Mascot Image" src={card.closedMascotImage||""} onSet={(v)=>set("closedMascotImage",v)} />
+      )}
+
+      <div>
+        <label style={{ fontSize:11, fontWeight:600, color:"#888", textTransform:"uppercase", display:"block", marginBottom:8 }}>Time Badges</label>
+        <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
+          {(card.times||[]).map((t,i)=>(
+            <div key={i} style={{ display:"flex", gap:8, alignItems:"center" }}>
+              <input value={t.label||""} onChange={(e)=>setTime(i,"label",e.target.value)}
+                placeholder="Label (e.g. Wed – Sun)"
+                style={{ flex:1, border:"1.5px solid #d0e0f0", borderRadius:8,
+                  padding:"7px 10px", fontSize:12, outline:"none", background:"#fff", color:"#222" }} />
+              <input value={t.value||""} onChange={(e)=>setTime(i,"value",e.target.value)}
+                placeholder="Time (e.g. 10AM – 8PM)"
+                style={{ flex:1, border:"1.5px solid #d0e0f0", borderRadius:8,
+                  padding:"7px 10px", fontSize:12, outline:"none", background:"#fff", color:"#444" }} />
+              <button onClick={()=>removeTime(i)}
+                style={{ background:"#fce8e8", color:"#a32d2d", border:"none",
+                  borderRadius:8, padding:"7px 10px", cursor:"pointer", fontSize:12, fontWeight:700 }}>✕</button>
+            </div>
+          ))}
+        </div>
+        <button onClick={addTime}
+          style={{ marginTop:8, background:"#e0edff", color:"#1a5fa8", border:"none",
+            borderRadius:8, padding:"7px 14px", cursor:"pointer", fontSize:12, fontWeight:700 }}>
+          + Add Time Badge
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function OpeningHoursEditor({ data, onChange }) {
+  const set = (k,v) => onChange({ ...data, [k]: v });
+  const cards = data.cards || [];
+  const updateCard  = (i, val) => { const n=[...cards]; n[i]=val; set("cards",n); };
+  const removeCard  = (i) => set("cards", cards.filter((_,idx)=>idx!==i));
+  const addCard     = () => set("cards", [...cards, {
+    color:"yellow", mascotImage:"", monthsLabel:"Months", months:"January · February",
+    closedNote:"", closedMascotImage:"", times:[{ label:"Wed – Sun", value:"10AM – 8PM" }],
+  }]);
+
+  return (
+    <div>
+      <SectionCard title="Section Header">
+        <Field label="Eyebrow Text" value={data.eyebrow||""} onChange={(v)=>set("eyebrow",v)} />
+        <Field label="Main Heading" value={data.heading||""} onChange={(v)=>set("heading",v)} />
+        <Field label="Sub-heading" value={data.subheading||""} onChange={(v)=>set("subheading",v)} />
+        <Field label="Note Bar Text" value={data.noteBar||""} onChange={(v)=>set("noteBar",v)} hint="Bottom banner note text" />
+      </SectionCard>
+      <SectionCard title="Hour Cards">
+        {cards.map((card,i)=>(
+          <OpeningHoursCardEditor key={i} card={card} index={i}
+            onChange={(val)=>updateCard(i,val)}
+            onRemove={()=>removeCard(i)} />
+        ))}
+        <button onClick={addCard}
+          style={{ background:"#e0edff", color:"#1a5fa8", border:"none",
+            borderRadius:8, padding:"10px 20px", cursor:"pointer", fontSize:13, fontWeight:700 }}>
+          + Add Card
+        </button>
+      </SectionCard>
+    </div>
+  );
+}
+
 // ════ MAIN APP ════
 
 function FunFactoryCMS() {
@@ -2468,13 +3328,18 @@ Reply ONLY with a valid JSON object matching the same structure. No explanation,
       case "ageBanner": return <AgeBannerEditor data={data.ageBanner || defaultData.ageBanner} onChange={(v) => updateSection("ageBanner", v)} />;
       case "stats":     return <StatsEditor     data={data.stats}     onChange={(v) => updateSection("stats", v)} />;
       case "features":   return <FeaturesEditor   data={data.features}   onChange={(v) => updateSection("features", v)} />;
-      case "locations":  return <LocationsEditor  data={data.locations}  onChange={(v) => updateSection("locations", v)} />;
+      case "locations":       return <LocationsEditor        data={data.locations}                                          onChange={(v) => updateSection("locations", v)} />;
+      case "locationsSection": return <LocationsSectionEditor  data={data.locationsSection || defaultData.locationsSection}  onChange={(v) => updateSection("locationsSection", v)} />;
+      case "partyCta":        return <PartyCTAEditor           data={data.partyCta || defaultData.partyCta}                  onChange={(v) => updateSection("partyCta", v)} />;
+      case "socialLinks":     return <SocialLinksEditor        data={data.socialLinks || defaultData.socialLinks}            onChange={(v) => updateSection("socialLinks", v)} />;
       case "facilities":    return <FacilitiesEditor    data={data.facilities    || { cards: [], mascotImage: "" }} onChange={(v) => updateSection("facilities", v)} />;
       case "whoWeAre":      return <WhoWeAreEditor      data={data.whoWeAre      || defaultData.whoWeAre}          onChange={(v) => updateSection("whoWeAre", v)} />;
       case "missionBanner": return <MissionBannerEditor data={data.missionBanner || defaultData.missionBanner}     onChange={(v) => updateSection("missionBanner", v)} />;
       case "footer":        return <FooterEditor        data={data.footer}                                         onChange={(v) => updateSection("footer", v)} />;
       case "events":        return <EventsEditor        data={data.events || defaultData.events}                   onChange={(v) => updateSection("events", v)} />;
       case "services":      return <ServicesEditor      data={data.services || defaultData.services}               onChange={(v) => updateSection("services", v)} />;
+      case "facilitiesDetail": return <FacilitiesDetailEditor data={data.facilitiesDetail || defaultData.facilitiesDetail} onChange={(v) => updateSection("facilitiesDetail", v)} />;
+      case "openingHours":  return <OpeningHoursEditor   data={data.openingHours || defaultData.openingHours}       onChange={(v) => updateSection("openingHours", v)} />;
       default: return null;
     }
   };
