@@ -195,6 +195,176 @@ const defaultData = {
       { label: "Terms & Conditions", href: "#" },
     ],
   },
+  aboutPage: {
+    hero: {
+      badge: "About Fun Factory",
+      heading: "Sri Lanka\'s <span>First</span><br/>Indoor Kids Playground!",
+      subtext: "Where imagination runs wild, friendships are forged, and every child gets to be the hero of their own adventure — in a totally safe, clean, and air-conditioned space.",
+      shapes: ["🎪", "⭐", "🎠", "🌈"],
+    },
+    mission: {
+      label: "Who We Are",
+      title: "The <span>Ultimate</span> Kids Venue!",
+      paragraphs: [
+        "Fun Factory is a unique children's activity centre located in Nawala and Mount Lavinia, designed to cater to both a child's physical and mental development. We are <strong>Sri Lanka's first supervised, totally air-conditioned, indoor playground</strong> for children aged 0 to 11 years.",
+        "With a large jungle gym, dedicated soft play area for toddlers & infants, dramatic play zones, reading corners, and so much more — we offer children the greatest variety in safe and exciting entertainment.",
+        "Our fantastic facilities and friendly staff, combined with our reputation for maintaining high levels of cleanliness and hygiene, attracts parents and kids from all over Colombo and beyond.",
+      ],
+      trophyEmoji: "🏆",
+      quote: "To be the first choice of parents when selecting a safe, clean, secure, and exciting facility for children to play in a stimulating environment.",
+      attr: "— Our Mission Statement",
+    },
+    stats: {
+      items: [
+        { number: "10+",  label: "Years of Fun" },
+        { number: "2",    label: "Locations" },
+        { number: "0–11", label: "Years Age Range" },
+        { number: "7",    label: "Play Zones" },
+      ],
+    },
+    whyChoose: {
+      label: "Why Choose Us",
+      title: "A Place <span>Built</span> for Kids",
+      cards: [
+        { icon: "❄️", title: "Fully Air-Conditioned",        desc: "Stay cool and comfortable no matter what the weather is like outside. Our entire facility is temperature-controlled for year-round fun." },
+        { icon: "🧼", title: "Hygiene First",                desc: "We maintain the highest standards of cleanliness throughout our facility, including weekly deep-cleans of our ball pit and all play equipment." },
+        { icon: "🛡️", title: "Safe & Supervised",           desc: "Trained staff monitor the play area at all times. Our facility is equipped with 24/7 video surveillance for everyone's peace of mind." },
+        { icon: "🎉", title: "Birthday Parties",             desc: "Make your child's birthday truly special with our incredible party packages. Book any day of the week for private functions!" },
+        { icon: "🧠", title: "Physical & Mental Growth",     desc: "Every activity is designed to stimulate both physical development and creativity, from reading corners to dramatic play zones." },
+        { icon: "📍", title: "Two Convenient Locations",     desc: "Visit us at Nawala or Mount Lavinia. Both branches offer the same world-class fun experience your children deserve." },
+      ],
+    },
+    facilities: {
+      label: "What We Offer",
+      title: "Our <span>Facilities</span>",
+      cards: [
+        { icon: "🌳", theme: "jungle",  title: "Jungle Gym",              desc: "Our large multi-level jungle gym is the heart of Fun Factory. Featuring slides, tunnels, climbing walls, and rope courses — maximum height limit 4'9\"." },
+        { icon: "👶", theme: "toddler", title: "Toddlers & Infants Area",  desc: "A dedicated, gated soft play zone designed especially for little ones aged 0–3 years. Safe, padded, and perfectly sized for tiny adventurers." },
+        { icon: "📚", theme: "library", title: "Library & Activity Corner",desc: "Encouraging a love of reading and learning through hands-on creative activities, arts, crafts, and stimulating educational content." },
+        { icon: "☕", theme: "cafe",    title: "Café",                     desc: "Relax and recharge at our in-house café while your kids play. Enjoy refreshments in a comfortable space. Baby food and bottles are welcome!" },
+      ],
+    },
+    locations: {
+      label: "Find Us",
+      title: "Two <span>Locations</span>",
+      branches: [
+        {
+          badge: "Branch 01",
+          name: "🗺️ Nawala Branch",
+          phone: "0112 862 656 | 0773 603 777",
+          hours: "Wed – Sun & Public Holidays: 10am – 8pm",
+          bookingNote: "Private Bookings available all 7 days",
+          directionHref: "#",
+        },
+        {
+          badge: "Branch 02",
+          name: "🗺️ Mount Lavinia Branch",
+          phone: "0112 761 626",
+          hours: "Wed – Sun & Public Holidays: 10am – 8pm",
+          bookingNote: "Private Bookings available all 7 days",
+          directionHref: "#",
+        },
+      ],
+    },
+    team: {
+      label: "Meet Our Team",
+      title: "Friendly <span>Faces</span> Everywhere",
+      emojis: ["👩‍💼", "👨‍🎨", "👩‍🍳", "👩‍⚕️", "🧑‍🏫"],
+      desc: "Our dedicated team of trained staff are passionate about creating the safest, most fun environment for your children. From play monitors to party coordinators — we're all here to make every visit magical!",
+    },
+    openingHours: {
+      label: "When to Visit",
+      title: "Opening <span>Hours</span>",
+      tableHeadings: ["📅 Months", "📆 Days Open", "🕐 Hours"],
+      rows: [
+        {
+          months: "Jan · Feb · Mar · May · Jun · Sep · Oct · Nov",
+          days: "Wednesday – Sunday",
+          daysNote: "+ all public & school holidays",
+          hours: "10am – 8pm",
+        },
+        {
+          months: "Apr · Jul · Aug · Dec",
+          days: "Wednesday – Sunday",
+          daysNote: "+ all public & school holidays",
+          hours: "10am – 8pm",
+        },
+      ],
+      note1: "🎂 <strong>Birthday Parties & Private Functions</strong> can be booked for <strong>any day of the week</strong>, including Monday & Tuesday. &nbsp;|&nbsp; ⏰ Walk-in customers welcome up to <strong>1 hour before closing</strong>. Drop & Shop customers up to <strong>2 hours before closing</strong>.",
+      note2: "⚠️ We may occasionally close for exclusive private functions. Dates & times will be posted on our website and in-house. Please call ahead to confirm — <strong>Nawala: 0112 862 656 | Mt. Lavinia: 0112 761 626</strong>",
+    },
+    tnc: {
+      label: "Rules & Guidelines",
+      title: "Terms & <span>Conditions</span>",
+      intro: "Fun Factory has adopted the following policies to ensure a fun and safe environment for everyone. Please read carefully before your visit.",
+      cards: [
+        {
+          icon: "📋",
+          title: "Registration Waiver",
+          bodyHtml: "A waiver (Registration Form) <strong>must be signed</strong> by a parent or guardian before children are allowed to play. No exceptions. Fun Factory does not accept liability for any injuries or accidents that occur during play.",
+          highlightHtml: "",
+        },
+        {
+          icon: "🧦",
+          title: "Socks Only Policy",
+          bodyHtml: "Fun Factory is a <strong>socks-only facility</strong>. No one — adults included — is allowed past the reception area wearing shoes.",
+          highlightHtml: "Forgot socks? Purchase a pair at reception for Rs. 150 per pair.",
+        },
+        {
+          icon: "👨‍👩‍👧",
+          title: "Parental Supervision",
+          bodyHtml: "A parent, guardian, or responsible adult (18+ years) must accompany and <strong>supervise children at all times</strong>. Staff monitor equipment but are not a replacement for parental supervision.<br/><br/>Adults are welcome in the play area to supervise but <strong>are not permitted</strong> to use the play equipment.",
+          highlightHtml: "",
+        },
+        {
+          icon: "📏",
+          title: "Age & Height Limits",
+          bodyHtml: "<ul><li>Play facilities are designed for children <strong>aged 0–11 years</strong>. Children over 11 are not permitted in the play area.</li><li>The jungle gym has a <strong>maximum height limit of 4' 9\"</strong>. Children taller may use all other facilities.</li><li>No discounts are available for height or age restrictions.</li></ul>",
+          highlightHtml: "",
+        },
+        {
+          icon: "🚫",
+          title: "Zero Tolerance Policy",
+          bodyHtml: "Fun Factory has a <strong>zero tolerance policy</strong> for aggressive or unsafe behaviour, including bullying. The facility is monitored by <strong>24/7 video surveillance</strong>.<br/><br/>Offending children may be asked to leave immediately <strong>without a refund</strong>.",
+          highlightHtml: "",
+        },
+        {
+          icon: "🤒",
+          title: "Unwell Children",
+          bodyHtml: "Please keep unwell children at home, especially those with cold/flu symptoms or unusual rashes. Management reserves the right to refuse entry.<br/><br/>If a child is found to be ill inside the facility, they may be asked to leave — <strong>entry charges will be refunded</strong> (excludes birthday party guests).",
+          highlightHtml: "",
+        },
+        {
+          icon: "🍕",
+          title: "Food & Drink Rules",
+          bodyHtml: "<ul><li>No outside food or drink is allowed on the premises.</li><li>Baby bottles and baby food are permitted in the café area.</li><li>No cakes or party items unless part of a Fun Factory party package.</li><li><strong>No glass containers</strong> ever allowed inside.</li><li>Children must stay in the designated food area while eating or drinking.</li></ul>",
+          highlightHtml: "",
+        },
+        {
+          icon: "🎱",
+          title: "Ball Pit Rules",
+          bodyHtml: "<ul><li>Ensure little ones wear a diaper if not potty-trained.</li><li>Wait a bit after food or drink before entering the ball pit.</li><li>The ball pit is deep-cleaned every week as part of our hygiene routine.</li></ul>",
+          highlightHtml: "⚠️ A fee of <strong>Rs. 5,000/-</strong> will be charged for toilet or vomit accidents in the ball pit, due to the labour-intensive clean-up of 15,000+ balls.",
+        },
+      ],
+      generalPolicies: [
+        "Fun Factory reserves the right to restrict Walk-Ins when the facility is at maximum capacity or exclusively booked.",
+        "Certain play areas may close for emergency maintenance without prior notice or refund.",
+        "Customers causing damage to property may be charged for repairs.",
+        "Fun Factory does not accept liability for loss or damage to vehicles or property parked on premises.",
+        "All opening hours and prices are subject to change without notice.",
+        "Fun Factory reserves the right to ask anyone to leave if any rules are broken.",
+      ],
+    },
+    cta: {
+      heading: "Ready to Visit <span>Fun Factory?</span>",
+      subtext: "Walk in any Wednesday to Sunday from 10am–8pm, or book a party for any day of the week!",
+      btn1Label: "🎉 Book a Party",
+      btn1Href:  "#",
+      btn2Label: "📍 Find a Location",
+      btn2Href:  "#",
+    },
+  },
   partyCta: {
     heading: "Ready to Book a Party?",
     subtext: "Call us to check availability and packages",
@@ -444,6 +614,620 @@ const defaultData = {
   },
 };
 
+
+// ════ ABOUT PAGE EDITOR ════
+function AboutPageEditor({ data, onChange }) {
+  const set        = (k, v) => onChange({ ...data, [k]: v });
+  const setHero    = (k, v) => set("hero",    { ...data.hero,    [k]: v });
+  const setMission = (k, v) => set("mission", { ...data.mission, [k]: v });
+  const setStats   = (k, v) => set("stats",   { ...data.stats,   [k]: v });
+  const setWhy     = (k, v) => set("whyChoose", { ...data.whyChoose, [k]: v });
+  const setFac     = (k, v) => set("facilities", { ...(data.facilities || {}), [k]: v });
+  const setLoc     = (k, v) => set("locations",    { ...(data.locations    || {}), [k]: v });
+  const setTeam    = (k, v) => set("team",         { ...(data.team         || {}), [k]: v });
+  const setOH      = (k, v) => set("openingHours", { ...(data.openingHours || {}), [k]: v });
+  const setTnc     = (k, v) => set("tnc",          { ...(data.tnc          || {}), [k]: v });
+  const setCta     = (k, v) => set("cta",           { ...(data.cta          || {}), [k]: v });
+
+  const hero       = data.hero         || {};
+  const mission    = data.mission      || {};
+  const stats      = data.stats        || {};
+  const whyChoose  = data.whyChoose    || {};
+  const facilities = data.facilities   || {};
+  const locations  = data.locations    || {};
+  const team       = data.team         || {};
+  const oh         = data.openingHours || {};
+  const tnc        = data.tnc          || {};
+  const cta        = data.cta          || {};
+
+  // shapes helpers
+  const setShape   = (i, v) => { const s = [...(hero.shapes || [])]; s[i] = v; setHero("shapes", s); };
+
+  // paragraph helpers
+  const setPara    = (i, v) => { const p = [...(mission.paragraphs || [])]; p[i] = v; setMission("paragraphs", p); };
+  const addPara    = ()     => setMission("paragraphs", [...(mission.paragraphs || []), "New paragraph text."]);
+  const removePara = (i)    => setMission("paragraphs", (mission.paragraphs || []).filter((_, idx) => idx !== i));
+
+  // stats helpers
+  const setStat    = (i, f, v) => { const s = [...(stats.items || [])]; s[i] = { ...s[i], [f]: v }; setStats("items", s); };
+  const addStat    = ()        => setStats("items", [...(stats.items || []), { number: "0", label: "New Stat" }]);
+  const removeStat = (i)       => setStats("items", (stats.items || []).filter((_, idx) => idx !== i));
+
+  // why-card helpers
+  const setCard    = (i, f, v) => { const c = [...(whyChoose.cards || [])]; c[i] = { ...c[i], [f]: v }; setWhy("cards", c); };
+  const addCard    = ()        => setWhy("cards", [...(whyChoose.cards || []), { icon: "⭐", title: "New Card", desc: "Description here." }]);
+  const removeCard = (i)       => setWhy("cards", (whyChoose.cards || []).filter((_, idx) => idx !== i));
+
+  return (
+    <div>
+
+      {/* ── HERO ── */}
+      <SectionCard title="🎪 Hero Banner">
+        <Field label="Badge text (small label above title)"
+          value={hero.badge || ""} onChange={(v) => setHero("badge", v)} />
+        <Field label="Heading HTML (use <span> for yellow highlight)"
+          value={hero.heading || ""} onChange={(v) => setHero("heading", v)} multiline />
+        <Field label="Subtext (paragraph below heading)"
+          value={hero.subtext || ""} onChange={(v) => setHero("subtext", v)} multiline />
+        <div style={{ marginTop: 12 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#555", marginBottom: 6 }}>Floating Shapes (4 emojis)</div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+            {[0,1,2,3].map((i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ fontSize: 11, color: "#999", width: 60, flexShrink: 0 }}>Shape {i+1}</span>
+                <input value={(hero.shapes || [])[i] || ""}
+                  onChange={(e) => setShape(i, e.target.value)}
+                  style={{ flex: 1, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                    padding: "6px 10px", fontSize: 18, outline: "none", background: "#fff" }} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </SectionCard>
+
+      {/* ── MISSION ── */}
+      <SectionCard title="🏆 Mission / Who We Are Section">
+        <Field label="Section label (small uppercase text)"
+          value={mission.label || ""} onChange={(v) => setMission("label", v)} />
+        <Field label="Section title HTML (use <span> for orange word)"
+          value={mission.title || ""} onChange={(v) => setMission("title", v)} />
+        <div style={{ marginTop: 14 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#555", marginBottom: 8 }}>
+            Body Paragraphs (HTML allowed for &lt;strong&gt; etc.)
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {(mission.paragraphs || []).map((p, i) => (
+              <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+                <textarea value={p} onChange={(e) => setPara(i, e.target.value)} rows={3}
+                  style={{ flex: 1, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                    padding: "8px 10px", fontSize: 13, outline: "none", background: "#fff",
+                    resize: "vertical", color: "#222" }} />
+                <button onClick={() => removePara(i)}
+                  style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+                    borderRadius: 8, padding: "8px 12px", cursor: "pointer",
+                    fontSize: 13, fontWeight: 700, flexShrink: 0 }}>✕</button>
+              </div>
+            ))}
+          </div>
+          <button onClick={addPara}
+            style={{ marginTop: 10, background: "#e0edff", color: "#1a5fa8", border: "none",
+              borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+            + Add Paragraph
+          </button>
+        </div>
+        <Field label="Trophy / big emoji" hint="Emoji shown above the mission quote card"
+          value={mission.trophyEmoji || ""} onChange={(v) => setMission("trophyEmoji", v)} />
+        <Field label="Mission quote (yellow card text)"
+          value={mission.quote || ""} onChange={(v) => setMission("quote", v)} multiline />
+        <Field label="Attribution line"
+          value={mission.attr || ""} onChange={(v) => setMission("attr", v)} />
+      </SectionCard>
+
+      {/* ── STATS ── */}
+      <SectionCard title="📊 Stats Bar">
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {(stats.items || []).map((item, i) => (
+            <div key={i} style={{ display: "flex", gap: 8, alignItems: "center",
+              background: "#f8fbff", borderRadius: 10, padding: "10px 14px", border: "1.5px solid #dce8f8" }}>
+              <input value={item.number} onChange={(e) => setStat(i, "number", e.target.value)}
+                placeholder="Number" style={{ width: 80, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                  padding: "7px 10px", fontSize: 15, fontWeight: 700, outline: "none",
+                  background: "#fff", textAlign: "center", color: "#1a5fa8" }} />
+              <input value={item.label} onChange={(e) => setStat(i, "label", e.target.value)}
+                placeholder="Label" style={{ flex: 1, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                  padding: "7px 10px", fontSize: 13, outline: "none", background: "#fff", color: "#222" }} />
+              <button onClick={() => removeStat(i)}
+                style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+                  borderRadius: 8, padding: "7px 12px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>✕</button>
+            </div>
+          ))}
+        </div>
+        <button onClick={addStat}
+          style={{ marginTop: 10, background: "#e0edff", color: "#1a5fa8", border: "none",
+            borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+          + Add Stat
+        </button>
+      </SectionCard>
+
+      {/* ── WHY CHOOSE ── */}
+      <SectionCard title="✅ Why Choose Us Section">
+        <Field label="Section label (small uppercase text)"
+          value={whyChoose.label || ""} onChange={(v) => setWhy("label", v)} />
+        <Field label="Section title HTML (use <span> for orange highlight)"
+          value={whyChoose.title || ""} onChange={(v) => setWhy("title", v)} />
+        <div style={{ marginTop: 14 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#555", marginBottom: 10 }}>
+            Why-Cards (6 cards, 3-column grid)
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {(whyChoose.cards || []).map((card, i) => (
+              <div key={i} style={{ background: "#f8fbff", borderRadius: 12, padding: "14px 16px",
+                border: "1.5px solid #dce8f8" }}>
+                <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 8 }}>
+                  <span style={{ fontSize: 11, color: "#999", flexShrink: 0 }}>Card {i+1}</span>
+                  <input value={card.icon} onChange={(e) => setCard(i, "icon", e.target.value)}
+                    placeholder="Icon" style={{ width: 54, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                      padding: "5px 6px", fontSize: 20, outline: "none", background: "#fff",
+                      textAlign: "center" }} />
+                  <input value={card.title} onChange={(e) => setCard(i, "title", e.target.value)}
+                    placeholder="Card title" style={{ flex: 1, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                      padding: "7px 10px", fontSize: 13, fontWeight: 700, outline: "none",
+                      background: "#fff", color: "#1a1a2e" }} />
+                  <button onClick={() => removeCard(i)}
+                    style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+                      borderRadius: 8, padding: "7px 12px", cursor: "pointer",
+                      fontSize: 13, fontWeight: 700, flexShrink: 0 }}>✕</button>
+                </div>
+                <textarea value={card.desc} onChange={(e) => setCard(i, "desc", e.target.value)}
+                  rows={2} placeholder="Card description"
+                  style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                    padding: "7px 10px", fontSize: 12, outline: "none", background: "#fff",
+                    resize: "vertical", color: "#555", boxSizing: "border-box" }} />
+              </div>
+            ))}
+          </div>
+          <button onClick={addCard}
+            style={{ marginTop: 10, background: "#e0edff", color: "#1a5fa8", border: "none",
+              borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+            + Add Card
+          </button>
+        </div>
+      </SectionCard>
+
+      {/* ── ABOUT FACILITIES ── */}
+      <SectionCard title="🏟️ Facilities Section (About Page)">
+        <Field label="Section label (small uppercase text)"
+          value={(facilities.label) || ""} onChange={(v) => setFac("label", v)} />
+        <Field label="Section title HTML (use <span> for accent word)"
+          value={(facilities.title) || ""} onChange={(v) => setFac("title", v)} />
+        <div style={{ marginTop: 14 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#555", marginBottom: 10 }}>
+            Facility Cards (icon, theme, title, description)
+          </div>
+          <div style={{ fontSize: 11, color: "#888", marginBottom: 10 }}>
+            Theme options: <code>jungle</code> · <code>toddler</code> · <code>library</code> · <code>cafe</code>
+            &nbsp;(controls the card's background gradient colour)
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            {((facilities.cards) || []).map((card, i) => (
+              <div key={i} style={{ background: "#f8fbff", borderRadius: 12, padding: "14px 16px",
+                border: "1.5px solid #dce8f8" }}>
+                <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 10 }}>
+                  <span style={{ fontSize: 11, color: "#999", flexShrink: 0 }}>Card {i+1}</span>
+                  <input
+                    value={card.icon}
+                    onChange={(e) => {
+                      const cards = [...(facilities.cards || [])];
+                      cards[i] = { ...cards[i], icon: e.target.value };
+                      setFac("cards", cards);
+                    }}
+                    placeholder="🌳"
+                    style={{ width: 54, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                      padding: "5px 6px", fontSize: 20, outline: "none", background: "#fff",
+                      textAlign: "center" }} />
+                  <input
+                    value={card.theme}
+                    onChange={(e) => {
+                      const cards = [...(facilities.cards || [])];
+                      cards[i] = { ...cards[i], theme: e.target.value };
+                      setFac("cards", cards);
+                    }}
+                    placeholder="jungle"
+                    style={{ width: 90, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                      padding: "7px 8px", fontSize: 12, outline: "none", background: "#fff", color: "#666" }} />
+                  <input
+                    value={card.title}
+                    onChange={(e) => {
+                      const cards = [...(facilities.cards || [])];
+                      cards[i] = { ...cards[i], title: e.target.value };
+                      setFac("cards", cards);
+                    }}
+                    placeholder="Card title"
+                    style={{ flex: 1, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                      padding: "7px 10px", fontSize: 13, fontWeight: 700, outline: "none",
+                      background: "#fff", color: "#1a1a2e" }} />
+                  <button onClick={() => {
+                    const cards = (facilities.cards || []).filter((_, idx) => idx !== i);
+                    setFac("cards", cards);
+                  }}
+                    style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+                      borderRadius: 8, padding: "7px 12px", cursor: "pointer",
+                      fontSize: 13, fontWeight: 700, flexShrink: 0 }}>✕</button>
+                </div>
+                <textarea
+                  value={card.desc}
+                  onChange={(e) => {
+                    const cards = [...(facilities.cards || [])];
+                    cards[i] = { ...cards[i], desc: e.target.value };
+                    setFac("cards", cards);
+                  }}
+                  rows={2}
+                  placeholder="Card description"
+                  style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                    padding: "7px 10px", fontSize: 12, outline: "none", background: "#fff",
+                    resize: "vertical", color: "#555", boxSizing: "border-box" }} />
+              </div>
+            ))}
+          </div>
+          <button onClick={() => {
+            const cards = [...(facilities.cards || []), { icon: "🎪", theme: "jungle", title: "New Facility", desc: "Describe this facility." }];
+            setFac("cards", cards);
+          }}
+            style={{ marginTop: 10, background: "#e0edff", color: "#1a5fa8", border: "none",
+              borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+            + Add Facility Card
+          </button>
+        </div>
+      </SectionCard>
+
+      {/* ── LOCATIONS ── */}
+      <SectionCard title="📍 Locations Section (About Page)">
+        <Field label="Section label (small uppercase text)"
+          value={locations.label || ""} onChange={(v) => setLoc("label", v)} />
+        <Field label="Section title HTML (use <span> for accent word)"
+          value={locations.title || ""} onChange={(v) => setLoc("title", v)} />
+        <div style={{ marginTop: 14 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#555", marginBottom: 10 }}>
+            Branch Cards
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            {(locations.branches || []).map((branch, i) => (
+              <div key={i} style={{ background: "#f8fbff", borderRadius: 12, padding: "16px",
+                border: "1.5px solid #dce8f8" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+                  <span style={{ fontSize: 12, fontWeight: 800, color: "#1a5fa8" }}>Branch {i + 1}</span>
+                  <button onClick={() => {
+                    const branches = (locations.branches || []).filter((_, idx) => idx !== i);
+                    setLoc("branches", branches);
+                  }} style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+                    borderRadius: 8, padding: "5px 10px", cursor: "pointer", fontSize: 12, fontWeight: 700 }}>✕ Remove</button>
+                </div>
+                {[
+                  { key: "badge",       label: "Badge (e.g. Branch 01)" },
+                  { key: "name",        label: "Branch Name (emoji + text)" },
+                  { key: "phone",       label: "Phone Number(s)" },
+                  { key: "hours",       label: "Opening Hours" },
+                  { key: "bookingNote", label: "Booking Note" },
+                  { key: "directionHref", label: "Get Directions URL" },
+                ].map(({ key, label }) => (
+                  <div key={key} style={{ marginBottom: 8 }}>
+                    <label style={{ display: "block", fontSize: 11, fontWeight: 700, color: "#777",
+                      marginBottom: 3, textTransform: "uppercase" }}>{label}</label>
+                    <input value={branch[key] || ""} onChange={(e) => {
+                      const branches = [...(locations.branches || [])];
+                      branches[i] = { ...branches[i], [key]: e.target.value };
+                      setLoc("branches", branches);
+                    }} style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                      padding: "7px 10px", fontSize: 13, outline: "none",
+                      background: "#fff", color: "#222", boxSizing: "border-box" }} />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+          <button onClick={() => {
+            const branches = [...(locations.branches || []), {
+              badge: "Branch 0" + ((locations.branches || []).length + 1),
+              name: "🗺️ New Branch",
+              phone: "",
+              hours: "Wed – Sun: 10am – 8pm",
+              bookingNote: "Private Bookings available all 7 days",
+              directionHref: "#",
+            }];
+            setLoc("branches", branches);
+          }} style={{ marginTop: 12, background: "#e0edff", color: "#1a5fa8", border: "none",
+            borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+            + Add Branch
+          </button>
+        </div>
+      </SectionCard>
+
+      {/* ── TEAM ── */}
+      <SectionCard title="👥 Team Section (About Page)">
+        <Field label="Section label (small uppercase text)"
+          value={team.label || ""} onChange={(v) => setTeam("label", v)} />
+        <Field label="Section title HTML (use <span> for accent word)"
+          value={team.title || ""} onChange={(v) => setTeam("title", v)} />
+        <div style={{ marginTop: 12, marginBottom: 14 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#555", marginBottom: 8 }}>
+            Team Emojis (shown as coloured circles)
+          </div>
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
+            {(team.emojis || []).map((emoji, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 4,
+                background: "#f0f6ff", borderRadius: 10, padding: "6px 10px",
+                border: "1.5px solid #d0e0f0" }}>
+                <input value={emoji} onChange={(e) => {
+                  const emojis = [...(team.emojis || [])];
+                  emojis[i] = e.target.value;
+                  setTeam("emojis", emojis);
+                }} style={{ width: 44, border: "none", background: "transparent",
+                  fontSize: 22, outline: "none", textAlign: "center" }} />
+                <button onClick={() => {
+                  setTeam("emojis", (team.emojis || []).filter((_, idx) => idx !== i));
+                }} style={{ background: "none", border: "none", color: "#a32d2d",
+                  cursor: "pointer", fontSize: 14, lineHeight: 1, padding: 2 }}>✕</button>
+              </div>
+            ))}
+            <button onClick={() => setTeam("emojis", [...(team.emojis || []), "🙂"])}
+              style={{ background: "#e0edff", color: "#1a5fa8", border: "none",
+                borderRadius: 10, padding: "8px 14px", cursor: "pointer",
+                fontSize: 13, fontWeight: 700 }}>+ Add</button>
+          </div>
+        </div>
+        <Field label="Team description paragraph"
+          value={team.desc || ""} onChange={(v) => setTeam("desc", v)} multiline />
+      </SectionCard>
+
+      {/* ── OPENING HOURS ── */}
+      <SectionCard title="🕐 Opening Hours Section (About Page)">
+        <Field label="Section label" value={oh.label || ""} onChange={(v) => setOH("label", v)} />
+        <Field label="Section title HTML (use <span> for accent word)" value={oh.title || ""} onChange={(v) => setOH("title", v)} />
+
+        <div style={{ marginTop: 14, marginBottom: 14 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#555", marginBottom: 8 }}>
+            Table Column Headings (3 columns)
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
+            {[0, 1, 2].map((i) => (
+              <input key={i}
+                value={(oh.tableHeadings || [])[i] || ""}
+                onChange={(e) => {
+                  const h = [...(oh.tableHeadings || ["", "", ""])];
+                  h[i] = e.target.value;
+                  setOH("tableHeadings", h);
+                }}
+                style={{ border: "1.5px solid #d0e0f0", borderRadius: 8,
+                  padding: "7px 10px", fontSize: 13, outline: "none",
+                  background: "#fff", color: "#222" }} />
+            ))}
+          </div>
+        </div>
+
+        <div style={{ marginBottom: 14 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#555", marginBottom: 8 }}>
+            Table Rows
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {(oh.rows || []).map((row, i) => (
+              <div key={i} style={{ background: "#f8fbff", borderRadius: 10,
+                padding: "12px 14px", border: "1.5px solid #dce8f8" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
+                  <span style={{ fontSize: 11, fontWeight: 800, color: "#1a5fa8" }}>Row {i + 1}</span>
+                  <button onClick={() => setOH("rows", (oh.rows || []).filter((_, idx) => idx !== i))}
+                    style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+                      borderRadius: 6, padding: "3px 9px", cursor: "pointer", fontSize: 12, fontWeight: 700 }}>✕</button>
+                </div>
+                {[
+                  { key: "months", label: "Months" },
+                  { key: "days",   label: "Days Open" },
+                  { key: "daysNote", label: "Days sub-note (small italic)" },
+                  { key: "hours",  label: "Hours" },
+                ].map(({ key, label }) => (
+                  <div key={key} style={{ marginBottom: 6 }}>
+                    <label style={{ fontSize: 11, fontWeight: 700, color: "#777",
+                      display: "block", marginBottom: 2, textTransform: "uppercase" }}>{label}</label>
+                    <input value={row[key] || ""} onChange={(e) => {
+                      const rows = [...(oh.rows || [])];
+                      rows[i] = { ...rows[i], [key]: e.target.value };
+                      setOH("rows", rows);
+                    }} style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 7,
+                      padding: "6px 10px", fontSize: 13, outline: "none",
+                      background: "#fff", color: "#222", boxSizing: "border-box" }} />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+          <button onClick={() => setOH("rows", [...(oh.rows || []),
+            { months: "", days: "Wednesday – Sunday", daysNote: "+ all public & school holidays", hours: "10am – 8pm" }])}
+            style={{ marginTop: 10, background: "#e0edff", color: "#1a5fa8", border: "none",
+              borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+            + Add Row
+          </button>
+        </div>
+
+        <div style={{ marginBottom: 10 }}>
+          <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#555",
+            marginBottom: 4, textTransform: "uppercase" }}>Note 1 (yellow bar — HTML allowed)</label>
+          <textarea value={oh.note1 || ""} onChange={(e) => setOH("note1", e.target.value)} rows={3}
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "8px 10px", fontSize: 13, outline: "none", background: "#fff",
+              color: "#222", resize: "vertical", boxSizing: "border-box" }} />
+        </div>
+        <div>
+          <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#555",
+            marginBottom: 4, textTransform: "uppercase" }}>Note 2 (amber bar — HTML allowed)</label>
+          <textarea value={oh.note2 || ""} onChange={(e) => setOH("note2", e.target.value)} rows={3}
+            style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+              padding: "8px 10px", fontSize: 13, outline: "none", background: "#fff",
+              color: "#222", resize: "vertical", boxSizing: "border-box" }} />
+        </div>
+      </SectionCard>
+
+      {/* ── TERMS & CONDITIONS ── */}
+      <SectionCard title="📜 Terms & Conditions Section (About Page)">
+        <Field label="Section label" value={tnc.label || ""} onChange={(v) => setTnc("label", v)} />
+        <Field label="Section title HTML (use <span> for accent word)" value={tnc.title || ""} onChange={(v) => setTnc("title", v)} />
+        <Field label="Intro paragraph" value={tnc.intro || ""} onChange={(v) => setTnc("intro", v)} multiline />
+
+        <div style={{ marginTop: 14 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#555", marginBottom: 10 }}>
+            T&amp;C Cards
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            {(tnc.cards || []).map((card, i) => (
+              <div key={i} style={{ background: "#f8fbff", borderRadius: 12,
+                padding: "14px 16px", border: "1.5px solid #dce8f8" }}>
+                <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 10 }}>
+                  <span style={{ fontSize: 11, color: "#999", flexShrink: 0 }}>Card {i + 1}</span>
+                  <input value={card.icon || ""} onChange={(e) => {
+                    const cards = [...(tnc.cards || [])];
+                    cards[i] = { ...cards[i], icon: e.target.value };
+                    setTnc("cards", cards);
+                  }} style={{ width: 50, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                    padding: "5px 6px", fontSize: 20, outline: "none",
+                    background: "#fff", textAlign: "center" }} />
+                  <input value={card.title || ""} onChange={(e) => {
+                    const cards = [...(tnc.cards || [])];
+                    cards[i] = { ...cards[i], title: e.target.value };
+                    setTnc("cards", cards);
+                  }} placeholder="Card title"
+                    style={{ flex: 1, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                      padding: "7px 10px", fontSize: 13, fontWeight: 700,
+                      outline: "none", background: "#fff", color: "#1a1a2e" }} />
+                  <button onClick={() => setTnc("cards", (tnc.cards || []).filter((_, idx) => idx !== i))}
+                    style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+                      borderRadius: 8, padding: "7px 12px", cursor: "pointer",
+                      fontSize: 13, fontWeight: 700, flexShrink: 0 }}>✕</button>
+                </div>
+                <div style={{ marginBottom: 8 }}>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: "#777",
+                    display: "block", marginBottom: 3, textTransform: "uppercase" }}>
+                    Body HTML (&lt;ul&gt;&lt;li&gt;, &lt;strong&gt; allowed)
+                  </label>
+                  <textarea value={card.bodyHtml || ""} onChange={(e) => {
+                    const cards = [...(tnc.cards || [])];
+                    cards[i] = { ...cards[i], bodyHtml: e.target.value };
+                    setTnc("cards", cards);
+                  }} rows={3}
+                    style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                      padding: "7px 10px", fontSize: 12, outline: "none", background: "#fff",
+                      color: "#555", resize: "vertical", boxSizing: "border-box" }} />
+                </div>
+                <div>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: "#777",
+                    display: "block", marginBottom: 3, textTransform: "uppercase" }}>
+                    Highlight box HTML (leave blank to hide)
+                  </label>
+                  <input value={card.highlightHtml || ""} onChange={(e) => {
+                    const cards = [...(tnc.cards || [])];
+                    cards[i] = { ...cards[i], highlightHtml: e.target.value };
+                    setTnc("cards", cards);
+                  }} style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                    padding: "7px 10px", fontSize: 12, outline: "none",
+                    background: "#fff", color: "#555", boxSizing: "border-box" }} />
+                </div>
+              </div>
+            ))}
+          </div>
+          <button onClick={() => setTnc("cards", [...(tnc.cards || []),
+            { icon: "📌", title: "New Policy", bodyHtml: "Policy description here.", highlightHtml: "" }])}
+            style={{ marginTop: 10, background: "#e0edff", color: "#1a5fa8", border: "none",
+              borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+            + Add T&amp;C Card
+          </button>
+        </div>
+
+        <div style={{ marginTop: 20 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#555", marginBottom: 8 }}>
+            General Policies (full-width card at bottom)
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {(tnc.generalPolicies || []).map((policy, i) => (
+              <div key={i} style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                <span style={{ fontSize: 13, color: "#43A047", flexShrink: 0 }}>✅</span>
+                <input value={policy} onChange={(e) => {
+                  const gp = [...(tnc.generalPolicies || [])];
+                  gp[i] = e.target.value;
+                  setTnc("generalPolicies", gp);
+                }} style={{ flex: 1, border: "1.5px solid #d0e0f0", borderRadius: 8,
+                  padding: "7px 10px", fontSize: 13, outline: "none",
+                  background: "#fff", color: "#222" }} />
+                <button onClick={() => setTnc("generalPolicies", (tnc.generalPolicies || []).filter((_, idx) => idx !== i))}
+                  style={{ background: "#fce8e8", color: "#a32d2d", border: "none",
+                    borderRadius: 8, padding: "7px 12px", cursor: "pointer",
+                    fontSize: 13, fontWeight: 700, flexShrink: 0 }}>✕</button>
+              </div>
+            ))}
+          </div>
+          <button onClick={() => setTnc("generalPolicies", [...(tnc.generalPolicies || []), "New general policy."])}
+            style={{ marginTop: 10, background: "#e0edff", color: "#1a5fa8", border: "none",
+              borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontSize: 13, fontWeight: 700 }}>
+            + Add Policy
+          </button>
+        </div>
+      </SectionCard>
+
+      {/* ── CTA BANNER ── */}
+      <SectionCard title="🎉 CTA Banner (About Page)">
+        <Field label="Heading HTML (use <span> for yellow accent)"
+          value={cta.heading || ""} onChange={(v) => setCta("heading", v)} />
+        <Field label="Subtext paragraph"
+          value={cta.subtext || ""} onChange={(v) => setCta("subtext", v)} multiline />
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginTop: 4 }}>
+          <div>
+            <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#555",
+              marginBottom: 4, textTransform: "uppercase" }}>Button 1 Label</label>
+            <input value={cta.btn1Label || ""} onChange={(e) => setCta("btn1Label", e.target.value)}
+              style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                padding: "8px 10px", fontSize: 13, outline: "none",
+                background: "#fff", color: "#222", boxSizing: "border-box" }} />
+          </div>
+          <div>
+            <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#555",
+              marginBottom: 4, textTransform: "uppercase" }}>Button 1 URL</label>
+            <input value={cta.btn1Href || ""} onChange={(e) => setCta("btn1Href", e.target.value)}
+              style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                padding: "8px 10px", fontSize: 13, outline: "none",
+                background: "#fff", color: "#222", boxSizing: "border-box" }} />
+          </div>
+          <div>
+            <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#555",
+              marginBottom: 4, textTransform: "uppercase" }}>Button 2 Label</label>
+            <input value={cta.btn2Label || ""} onChange={(e) => setCta("btn2Label", e.target.value)}
+              style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                padding: "8px 10px", fontSize: 13, outline: "none",
+                background: "#fff", color: "#222", boxSizing: "border-box" }} />
+          </div>
+          <div>
+            <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#555",
+              marginBottom: 4, textTransform: "uppercase" }}>Button 2 URL</label>
+            <input value={cta.btn2Href || ""} onChange={(e) => setCta("btn2Href", e.target.value)}
+              style={{ width: "100%", border: "1.5px solid #d0e0f0", borderRadius: 8,
+                padding: "8px 10px", fontSize: 13, outline: "none",
+                background: "#fff", color: "#222", boxSizing: "border-box" }} />
+          </div>
+        </div>
+        <div style={{ marginTop: 14, background: "linear-gradient(135deg,#1565C0,#0288D1)",
+          borderRadius: 12, padding: "16px 20px", textAlign: "center" }}>
+          <div style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", marginBottom: 6, fontWeight: 700 }}>PREVIEW</div>
+          <div style={{ fontFamily: "'Fredoka One', cursive", fontSize: 18, color: "#fff", marginBottom: 6 }}
+            dangerouslySetInnerHTML={{ __html: cta.heading || "Ready to Visit Fun Factory?" }} />
+          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.85)", marginBottom: 12 }}>{cta.subtext}</div>
+          <div style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap" }}>
+            <span style={{ background: "#FFD600", color: "#1a1a2e", padding: "8px 20px",
+              borderRadius: 20, fontSize: 13, fontWeight: 800 }}>{cta.btn1Label || "🎉 Book a Party"}</span>
+            <span style={{ border: "2px solid rgba(255,255,255,0.6)", color: "#fff", padding: "8px 20px",
+              borderRadius: 20, fontSize: 13, fontWeight: 700 }}>{cta.btn2Label || "📍 Find a Location"}</span>
+          </div>
+        </div>
+      </SectionCard>
+
+    </div>
+  );
+}
+
 const SECTIONS = [
   { key: "topBanner", label: "Top Banner",    icon: "📢" },
   { key: "navbar",    label: "Navigation",    icon: "🧭" },
@@ -464,6 +1248,7 @@ const SECTIONS = [
   { key: "services",         label: "Services",         icon: "🎟️" },
   { key: "facilitiesDetail", label: "Facilities Detail", icon: "🌴" },
   { key: "openingHours",     label: "Opening Hours",    icon: "🕐" },
+  { key: "aboutPage",       label: "About Page",       icon: "📖" },
 ];
 
 const MAX_SLIDER_IMAGES = 6;
@@ -3340,6 +4125,7 @@ Reply ONLY with a valid JSON object matching the same structure. No explanation,
       case "services":      return <ServicesEditor      data={data.services || defaultData.services}               onChange={(v) => updateSection("services", v)} />;
       case "facilitiesDetail": return <FacilitiesDetailEditor data={data.facilitiesDetail || defaultData.facilitiesDetail} onChange={(v) => updateSection("facilitiesDetail", v)} />;
       case "openingHours":  return <OpeningHoursEditor   data={data.openingHours || defaultData.openingHours}       onChange={(v) => updateSection("openingHours", v)} />;
+      case "aboutPage":     return <AboutPageEditor      data={data.aboutPage || defaultData.aboutPage}             onChange={(v) => updateSection("aboutPage", v)} />;
       default: return null;
     }
   };
